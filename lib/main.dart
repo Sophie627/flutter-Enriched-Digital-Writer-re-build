@@ -37,60 +37,15 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Image.asset('images/logo.png'),
         backgroundColor: Colors.white,
         actions: [
-          FlatButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            hoverColor: Colors.grey,
-            disabledColor: Colors.grey,
-            disabledTextColor: Colors.black,
-            padding: EdgeInsets.all(8.0),
-            splashColor: Colors.grey,
-            onPressed: () {
-              /*...*/
-            },
-            child: Text(
-              "Close",
-              style: TextStyle(fontSize: 20.0),
-            ),
-          ),
+          CustomButton('Close'),
           SizedBox(
             width: 30.0,
           ),
-          FlatButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            hoverColor: Colors.grey,
-            disabledColor: Colors.grey,
-            disabledTextColor: Colors.black,
-            padding: EdgeInsets.all(8.0),
-            splashColor: Colors.grey,
-            onPressed: () {
-              /*...*/
-            },
-            child: Text(
-              "My Account",
-              style: TextStyle(fontSize: 20.0),
-            ),
-          ),
+          CustomButton('My Account'),
           SizedBox(
             width: 30.0,
           ),
-          FlatButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            hoverColor: Colors.grey,
-            disabledColor: Colors.grey,
-            disabledTextColor: Colors.black,
-            padding: EdgeInsets.all(8.0),
-            splashColor: Colors.grey,
-            onPressed: () {
-              /*...*/
-            },
-            child: Text(
-              "Forum",
-              style: TextStyle(fontSize: 20.0),
-            ),
-          ),
+          CustomButton('Forum'),
           SizedBox(
             width: 30.0,
           ),
@@ -105,44 +60,37 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     SizedBox(height: 20,),
-                    Text('New Template Library',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-//                    SizedBox(height: 20,),
+                    HeaderText('New Template Library'),
                     Expanded(
                       child: Container(
                         margin: EdgeInsets.all(20.0),
                         padding: EdgeInsets.all(10.0),
-                        color: Colors.grey,
+                        color: Colors.grey[300],
                         child: Table(
                           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                           children: [
                             TableRow( children: [
-                              _tableCell('T1h) An Adult - 30, maybe 40 or something',
+                              TableCell('T1h) An Adult - 30, maybe 40 or something',
                               ),
-                              _tableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                              TableCell("T6c) Boy - it's a boy - a very special little boy in...",
                               ),
-                              _tableCell('eBC19) Rectangle landspace single...',
-                              ),
-                            ]),
-                            TableRow( children: [
-                              _tableCell('T1h) An Adult - 30, maybe 40 or something',
-                              ),
-                              _tableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                              ),
-                              _tableCell('eBC19) Rectangle landspace single...',
+                              TableCell('eBC19) Rectangle landspace single...',
                               ),
                             ]),
                             TableRow( children: [
-                              _tableCell('T1h) An Adult - 30, maybe 40 or something',
+                              TableCell('T1h) An Adult - 30, maybe 40 or something',
                               ),
-                              _tableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                              TableCell("T6c) Boy - it's a boy - a very special little boy in...",
                               ),
-                              _tableCell('eBC19) Rectangle landspace single...',
+                              TableCell('eBC19) Rectangle landspace single...',
+                              ),
+                            ]),
+                            TableRow( children: [
+                              TableCell('T1h) An Adult - 30, maybe 40 or something',
+                              ),
+                              TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                              ),
+                              TableCell('eBC19) Rectangle landspace single...',
                               ),
                             ]),
                           ],
@@ -159,7 +107,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     SizedBox(height: 20,),
-                    Text('Completed Template Library'),
+                    HeaderText('Completed Template Library'),
+                    Container(
+                      margin: EdgeInsets.all(20.0),
+                      padding: EdgeInsets.all(10.0),
+                      child: Table(
+                        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                        children: [
+                          TableRow( children: [
+                            TableCell('untitled 1'),
+                            TableCell(""),
+                            TableCell(''),
+                          ]),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -167,9 +129,27 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               color: Colors.white,
               child: Center(
-                child: Row(
+                child: Column(
                   children: [
-                    Text('Recently Opened'),
+                    SizedBox(height: 23.0,),
+                    Text('Recently Opened',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    SizedBox(height: 23.0,),
+                    Expanded(
+                      child: Container(
+                        color: Colors.grey[300],
+                        child: Image.asset('images/template_sample.png'),
+                      ),
+                    ),
+                    CustomButton('My Library'),
+                    CustomButton('Import'),
+                    CustomButton('Directory'),
+                    CustomButton('Video'),
+                    CustomButton('Images'),
+                    CustomButton('Voice'),
                   ],
                 ),
               ),
@@ -182,16 +162,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   /*
-    Widget _tableCell(String txt)
+    Widget TableCell(String txt)
     Author: Sophie(bolesalavb@gmail.com)
     Created Date & Time:  Aug 15 2020 7:45 PM
 
-    Widget: _tableCell
+    Widget: TableCell
     Parameters: txt(String) - Text in cell of table
 
     Return: Padding
    */
-  Widget _tableCell(String txt) {
+  Widget TableCell(String txt) {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: 10.0,
@@ -199,6 +179,53 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       child: Text(txt,
         textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  /*
+    Widget CustomButton(String txt)
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time:  Aug 15 2020 8:08 PM
+
+    Widget: CustomButton
+    Parameters: txt(String) - Text in button
+    Return: FlatButton
+   */
+  Widget CustomButton(String txt) {
+    return FlatButton(
+      color: Colors.white,
+      textColor: Colors.black,
+      hoverColor: Colors.grey[300],
+      disabledColor: Colors.grey,
+      disabledTextColor: Colors.black,
+      padding: EdgeInsets.all(8.0),
+      splashColor: Colors.grey,
+      onPressed: () {
+        /*...*/
+      },
+      child: Text(txt,
+        style: TextStyle(fontSize: 20.0),
+      ),
+    );
+  }
+
+  /*
+    Widget HeaderText(String txt)
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time:  Aug 15 2020 8:43PM
+
+    Widget: HeaderText
+    Description:  Text with Header style
+    Parameters: txt(String) - content of header text
+    Return: Text
+   */
+  Widget HeaderText(String txt) {
+    return Text(txt,
+      style: TextStyle(
+        fontSize: 20.0,
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.italic,
       ),
     );
   }
