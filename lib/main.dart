@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,13 +29,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +105,50 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     SizedBox(height: 20,),
-                    Text('New Template Library'),
+                    Text('New Template Library',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+//                    SizedBox(height: 20,),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.all(20.0),
+                        padding: EdgeInsets.all(10.0),
+                        color: Colors.grey,
+                        child: Table(
+                          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                          children: [
+                            TableRow( children: [
+                              _tableCell('T1h) An Adult - 30, maybe 40 or something',
+                              ),
+                              _tableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                              ),
+                              _tableCell('eBC19) Rectangle landspace single...',
+                              ),
+                            ]),
+                            TableRow( children: [
+                              _tableCell('T1h) An Adult - 30, maybe 40 or something',
+                              ),
+                              _tableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                              ),
+                              _tableCell('eBC19) Rectangle landspace single...',
+                              ),
+                            ]),
+                            TableRow( children: [
+                              _tableCell('T1h) An Adult - 30, maybe 40 or something',
+                              ),
+                              _tableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                              ),
+                              _tableCell('eBC19) Rectangle landspace single...',
+                              ),
+                            ]),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -140,6 +177,28 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  /*
+    Widget _tableCell(String txt)
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time:  Aug 15 2020 7:45 PM
+
+    Widget: _tableCell
+    Parameters: txt(String) - Text in cell of table
+
+    Return: Padding
+   */
+  Widget _tableCell(String txt) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: 10.0,
+        horizontal: 10.0
+      ),
+      child: Text(txt,
+        textAlign: TextAlign.center,
       ),
     );
   }
