@@ -52,108 +52,129 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Center(
-        child: Row(
+        child: Column(
           children: [
             Expanded(
-              flex: 1,
-              child: Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 20,),
-                    HeaderText('New Template Library'),
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.all(20.0),
-                        padding: EdgeInsets.all(10.0),
-                        color: Colors.grey[300],
-                        child: Table(
-                          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                          children: [
-                            TableRow( children: [
-                              TableCell('T1h) An Adult - 30, maybe 40 or something',
-                              ),
-                              TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                              ),
-                              TableCell('eBC19) Rectangle landspace single...',
-                              ),
-                            ]),
-                            TableRow( children: [
-                              TableCell('T1h) An Adult - 30, maybe 40 or something',
-                              ),
-                              TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                              ),
-                              TableCell('eBC19) Rectangle landspace single...',
-                              ),
-                            ]),
-                            TableRow( children: [
-                              TableCell('T1h) An Adult - 30, maybe 40 or something',
-                              ),
-                              TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                              ),
-                              TableCell('eBC19) Rectangle landspace single...',
-                              ),
-                            ]),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 20,),
-                    HeaderText('Completed Template Library'),
-                    Container(
-                      margin: EdgeInsets.all(20.0),
-                      padding: EdgeInsets.all(10.0),
-                      child: Table(
-                        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Center(
+                      child: Column(
                         children: [
-                          TableRow( children: [
-                            TableCell('untitled 1'),
-                            TableCell(""),
-                            TableCell(''),
-                          ]),
+                          SizedBox(height: 20,),
+                          HeaderText('New Template Library'),
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.all(20.0),
+                              padding: EdgeInsets.all(10.0),
+                              color: Colors.grey[300],
+                              child: Table(
+                                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                                children: [
+                                  TableRow( children: [
+                                    TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                    ),
+                                    TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                    ),
+                                    TableCell('eBC19) Rectangle landspace single...',
+                                    ),
+                                  ]),
+                                  TableRow( children: [
+                                    TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                    ),
+                                    TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                    ),
+                                    TableCell('eBC19) Rectangle landspace single...',
+                                    ),
+                                  ]),
+                                  TableRow( children: [
+                                    TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                    ),
+                                    TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                    ),
+                                    TableCell('eBC19) Rectangle landspace single...',
+                                    ),
+                                  ]),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 20,),
+                          HeaderText('Completed Template Library'),
+                          Container(
+                            margin: EdgeInsets.all(20.0),
+                            padding: EdgeInsets.all(10.0),
+                            child: Table(
+                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                              children: [
+                                TableRow( children: [
+                                  TableCell('untitled 1'),
+                                  TableCell(""),
+                                  TableCell(''),
+                                ]),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.white,
+                    child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 23.0,),
+                          Text('Recently Opened',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                          ),
+                          SizedBox(height: 23.0,),
+                          Expanded(
+                            child: Container(
+                              color: Colors.grey[300],
+                              child: Image.asset('images/template_sample.png'),
+                            ),
+                          ),
+                          CustomButton('My Library'),
+                          CustomButton('Import'),
+                          CustomButton('Directory'),
+                          CustomButton('Video'),
+                          CustomButton('Images'),
+                          CustomButton('Voice'),
+                        ],
+                      ),
+                    ),
+                    width: 150,
+                  ),
+                ],
               ),
             ),
             Container(
-              color: Colors.white,
-              child: Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 23.0,),
-                    Text('Recently Opened',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    SizedBox(height: 23.0,),
-                    Expanded(
-                      child: Container(
-                        color: Colors.grey[300],
-                        child: Image.asset('images/template_sample.png'),
-                      ),
-                    ),
-                    CustomButton('My Library'),
-                    CustomButton('Import'),
-                    CustomButton('Directory'),
-                    CustomButton('Video'),
-                    CustomButton('Images'),
-                    CustomButton('Voice'),
-                  ],
-                ),
+              padding: EdgeInsets.all(20.0),
+              height: 80.0,
+              color: Colors.grey[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomButton('Book Builder'),
+                  CustomButton('Tutorials'),
+                  CustomButton('Buy Credits'),
+                  CustomButton('Flip Pages'),
+                  CustomButton('Products Page'),
+                ],
               ),
-              width: 150,
             ),
           ],
         ),
