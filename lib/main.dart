@@ -34,7 +34,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset('images/logo.png'),
+        title: Container(
+          height: 40.0,
+            child: Image.asset('images/logo.png',
+            fit: BoxFit.fitHeight,
+          ),
+          decoration: BoxDecoration(
+            border: Border.all(
+//              style: BorderStyle.values(),
+            ),
+          ),
+        ),
         backgroundColor: Colors.white,
         actions: [
           CustomButton('Close'),
@@ -68,7 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Container(
                               margin: EdgeInsets.all(20.0),
                               padding: EdgeInsets.all(10.0),
-                              color: Colors.grey[300],
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black,
+                                ),
+                              ),
                               child: Table(
                                 defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                                 children: [
@@ -130,33 +144,46 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Container(
-                    color: Colors.white,
                     child: Center(
                       child: Column(
                         children: [
                           SizedBox(height: 23.0,),
-                          Text('Recently Opened',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                          ),
+                          HeaderText('Recently Opened'),
                           SizedBox(height: 23.0,),
                           Expanded(
+                            flex: 1,
                             child: Container(
-                              color: Colors.grey[300],
-                              child: Image.asset('images/template_sample.png'),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(),
+                                    ),
+                                    child: Image.asset('images/template_sample.png',),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          CustomButton('My Library'),
-                          CustomButton('Import'),
-                          CustomButton('Directory'),
-                          CustomButton('Video'),
-                          CustomButton('Images'),
-                          CustomButton('Voice'),
+                          Expanded(
+                            flex: 2,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CustomButton('My Library'),
+                                CustomButton('Import'),
+                                CustomButton('Directory'),
+                                CustomButton('Video'),
+                                CustomButton('Images'),
+                                CustomButton('Voice'),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    width: 150,
+                    width: 200,
                   ),
                 ],
               ),
@@ -164,9 +191,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               padding: EdgeInsets.all(20.0),
               height: 80.0,
-              color: Colors.grey[200],
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomButton('Book Builder'),
                   CustomButton('Tutorials'),
