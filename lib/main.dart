@@ -30,6 +30,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final ScrollController _NewTemplateScrollController = ScrollController();
+  final ScrollController _CompletedTemplateScrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -87,8 +89,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ),
                                 child: Scrollbar(
-//                                  isAlwaysShown: true,
+                                  isAlwaysShown: true,
+                                  controller: _NewTemplateScrollController,
                                   child: SingleChildScrollView(
+                                    controller: _NewTemplateScrollController,
                                     scrollDirection: Axis.vertical,
                                     child: Table(
                                       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
@@ -283,7 +287,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 margin: EdgeInsets.all(20.0),
                                 padding: EdgeInsets.all(10.0),
                                 child: Scrollbar(
+                                  isAlwaysShown: true,
+                                  controller: _CompletedTemplateScrollController,
                                   child: SingleChildScrollView(
+                                    controller: _CompletedTemplateScrollController,
                                     scrollDirection: Axis.vertical,
                                     child: Table(
                                       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
