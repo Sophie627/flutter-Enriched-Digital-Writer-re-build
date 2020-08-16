@@ -81,38 +81,182 @@ class _MyHomePageState extends State<MyHomePage> {
                                 margin: EdgeInsets.all(20.0),
                                 padding: EdgeInsets.all(10.0),
                                 decoration: BoxDecoration(
+                                  color: Colors.white,
                                   border: Border.all(
                                     color: Colors.black,
                                   ),
                                 ),
-                                child: Table(
-                                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                                  children: [
-                                    TableRow( children: [
-                                      TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                      ),
-                                      TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                      ),
-                                      TableCell('eBC19) Rectangle landspace single...',
-                                      ),
-                                    ]),
-                                    TableRow( children: [
-                                      TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                      ),
-                                      TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                      ),
-                                      TableCell('eBC19) Rectangle landspace single...',
-                                      ),
-                                    ]),
-                                    TableRow( children: [
-                                      TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                      ),
-                                      TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                      ),
-                                      TableCell('eBC19) Rectangle landspace single...',
-                                      ),
-                                    ]),
-                                  ],
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: Table(
+                                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                                    children: [
+                                      TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),
+                                      TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),
+                                      TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),TableRow( children: [
+                                        TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                        ),
+                                        TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                        ),
+                                        TableCell('eBC19) Rectangle landspace single...',
+                                        ),
+                                      ]),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -127,18 +271,26 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: [
                             SizedBox(height: 20,),
                             HeaderText('Completed Template Library'),
-                            Container(
-                              margin: EdgeInsets.all(20.0),
-                              padding: EdgeInsets.all(10.0),
-                              child: Table(
-                                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                                children: [
-                                  TableRow( children: [
-                                    TableCell('untitled 1'),
-                                    TableCell(""),
-                                    TableCell(''),
-                                  ]),
-                                ],
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                ),
+                                margin: EdgeInsets.all(20.0),
+                                padding: EdgeInsets.all(10.0),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: Table(
+                                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                                    children: [
+                                      TableRow( children: [
+                                        TableCell('untitled 1'),
+                                        TableCell(""),
+                                        TableCell(''),
+                                      ]),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ],
@@ -149,16 +301,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Center(
                         child: Column(
                           children: [
-                            SizedBox(height: 23.0,),
+                            SizedBox(height: 20.0,),
                             HeaderText('Recently Opened'),
-                            SizedBox(height: 23.0,),
+                            SizedBox(height: 20.0,),
                             Expanded(
                               flex: 1,
                               child: Container(
+                                color: Colors.white,
+                                width: 200.0,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
+                                      width: 150.0,
                                       decoration: BoxDecoration(
                                         border: Border.all(),
                                       ),
@@ -204,6 +359,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
+              SizedBox(height: 50.0,),
             ],
           ),
         ),
