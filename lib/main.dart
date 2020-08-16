@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Colors.grey[300],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -40,12 +41,11 @@ class _MyHomePageState extends State<MyHomePage> {
             fit: BoxFit.fitHeight,
           ),
           decoration: BoxDecoration(
-            border: Border.all(
-//              style: BorderStyle.values(),
-            ),
+            border: Border.all(),
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
+        shadowColor: Theme.of(context).primaryColor,
         actions: [
           CustomButton('Close'),
           SizedBox(
@@ -62,147 +62,150 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Center(
-        child: Column(
-          children: [
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Center(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 20,),
-                          HeaderText('New Template Library'),
-                          Expanded(
-                            child: Container(
-                              margin: EdgeInsets.all(20.0),
-                              padding: EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black,
+        child: Container(
+          color: Theme.of(context).primaryColor,
+          child: Column(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Center(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20,),
+                            HeaderText('New Template Library'),
+                            Expanded(
+                              child: Container(
+                                margin: EdgeInsets.all(20.0),
+                                padding: EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                child: Table(
+                                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                                  children: [
+                                    TableRow( children: [
+                                      TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                      ),
+                                      TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                      ),
+                                      TableCell('eBC19) Rectangle landspace single...',
+                                      ),
+                                    ]),
+                                    TableRow( children: [
+                                      TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                      ),
+                                      TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                      ),
+                                      TableCell('eBC19) Rectangle landspace single...',
+                                      ),
+                                    ]),
+                                    TableRow( children: [
+                                      TableCell('T1h) An Adult - 30, maybe 40 or something',
+                                      ),
+                                      TableCell("T6c) Boy - it's a boy - a very special little boy in...",
+                                      ),
+                                      TableCell('eBC19) Rectangle landspace single...',
+                                      ),
+                                    ]),
+                                  ],
                                 ),
                               ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Center(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20,),
+                            HeaderText('Completed Template Library'),
+                            Container(
+                              margin: EdgeInsets.all(20.0),
+                              padding: EdgeInsets.all(10.0),
                               child: Table(
                                 defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                                 children: [
                                   TableRow( children: [
-                                    TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                    ),
-                                    TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                    ),
-                                    TableCell('eBC19) Rectangle landspace single...',
-                                    ),
-                                  ]),
-                                  TableRow( children: [
-                                    TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                    ),
-                                    TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                    ),
-                                    TableCell('eBC19) Rectangle landspace single...',
-                                    ),
-                                  ]),
-                                  TableRow( children: [
-                                    TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                    ),
-                                    TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                    ),
-                                    TableCell('eBC19) Rectangle landspace single...',
-                                    ),
+                                    TableCell('untitled 1'),
+                                    TableCell(""),
+                                    TableCell(''),
                                   ]),
                                 ],
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Center(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 20,),
-                          HeaderText('Completed Template Library'),
-                          Container(
-                            margin: EdgeInsets.all(20.0),
-                            padding: EdgeInsets.all(10.0),
-                            child: Table(
-                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                              children: [
-                                TableRow( children: [
-                                  TableCell('untitled 1'),
-                                  TableCell(""),
-                                  TableCell(''),
-                                ]),
-                              ],
+                    Container(
+                      child: Center(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 23.0,),
+                            HeaderText('Recently Opened'),
+                            SizedBox(height: 23.0,),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(),
+                                      ),
+                                      child: Image.asset('images/template_sample.png',),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: Center(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 23.0,),
-                          HeaderText('Recently Opened'),
-                          SizedBox(height: 23.0,),
-                          Expanded(
-                            flex: 1,
-                            child: Container(
+                            Expanded(
+                              flex: 2,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(),
-                                    ),
-                                    child: Image.asset('images/template_sample.png',),
-                                  ),
+                                  CustomButton('My Library'),
+                                  CustomButton('Import'),
+                                  CustomButton('Directory'),
+                                  CustomButton('Video'),
+                                  CustomButton('Images'),
+                                  CustomButton('Voice'),
                                 ],
                               ),
                             ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CustomButton('My Library'),
-                                CustomButton('Import'),
-                                CustomButton('Directory'),
-                                CustomButton('Video'),
-                                CustomButton('Images'),
-                                CustomButton('Voice'),
-                              ],
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      width: 200,
                     ),
-                    width: 200,
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(20.0),
-              height: 80.0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  CustomButton('Book Builder'),
-                  CustomButton('Tutorials'),
-                  CustomButton('Buy Credits'),
-                  CustomButton('Flip Pages'),
-                  CustomButton('Products Page'),
-                ],
+              Container(
+                padding: EdgeInsets.all(20.0),
+                height: 80.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CustomButton('Book Builder'),
+                    CustomButton('Tutorials'),
+                    CustomButton('Buy Credits'),
+                    CustomButton('Flip Pages'),
+                    CustomButton('Products Page'),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -241,9 +244,9 @@ class _MyHomePageState extends State<MyHomePage> {
    */
   Widget CustomButton(String txt) {
     return FlatButton(
-      color: Colors.white,
+      color: Theme.of(context).primaryColor,
       textColor: Colors.black,
-      hoverColor: Colors.grey[300],
+      hoverColor: Colors.white,
       disabledColor: Colors.grey,
       disabledTextColor: Colors.black,
       padding: EdgeInsets.all(8.0),
