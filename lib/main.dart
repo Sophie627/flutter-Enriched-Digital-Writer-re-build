@@ -1,5 +1,6 @@
 import 'dart:html';
 
+import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Enriched Digital Writer',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: Colors.grey[300],
@@ -41,469 +42,58 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          height: 40.0,
-            child: Image.asset('images/logo.png',
-            fit: BoxFit.fitHeight,
-          ),
+        title: Row(
+          children: [
+            Container(
+              height: 40.0,
+                child: Image.asset('images/logo.png',
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+            CanvasButton('Open'),
+            CanvasButton('Save'),
+            CanvasButton('Print'),
+            CanvasButton('Delete'),
+            CanvasButton('Copy'),
+            CanvasButton('Paste'),
+            CanvasButton('Undo'),
+            CanvasButton('Redo'),
+            CanvasButton('Text Box'),
+            CanvasButton('Spell'),
+            CanvasButton('Font Color'),
+            CanvasButton('Fonts'),
+            CanvasButton('Zoom'),
+            CanvasButton('Un Freeze'),
+            CanvasButton('Page Color'),
+            CanvasButton('Help'),
+          ],
         ),
         backgroundColor: Theme.of(context).primaryColor,
         shadowColor: Theme.of(context).primaryColor,
-        actions: [
-          CustomButton('Close'),
-          SizedBox(
-            width: 30.0,
-          ),
-          CustomButton('My Account'),
-          SizedBox(
-            width: 30.0,
-          ),
-          CustomButton('Forum'),
-          SizedBox(
-            width: 30.0,
-          ),
-        ],
       ),
       body: Center(
         child: Container(
           color: Theme.of(context).primaryColor,
-          child: Column(
+          child: Row(
             children: [
+              ResizebleWidget(
+                type: 'left',
+                child: Container(
+                  color: Colors.white,
+                ),
+              ),
               Expanded(
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Center(
-                        child: Column(
-                          children: [
-                            SizedBox(height: 20,),
-                            HeaderText('New Template Library'),
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.all(20.0),
-                                padding: EdgeInsets.all(10.0),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: _borderColor,
-                                  ),
-                                ),
-                                child: Scrollbar(
-                                  isAlwaysShown: true,
-                                  controller: _NewTemplateScrollController,
-                                  child: SingleChildScrollView(
-                                    controller: _NewTemplateScrollController,
-                                    scrollDirection: Axis.vertical,
-                                    child: Table(
-                                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                                      children: [
-                                        TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),
-                                        TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),
-                                        TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),TableRow( children: [
-                                          TableCell('T1h) An Adult - 30, maybe 40 or something',
-                                          ),
-                                          TableCell("T6c) Boy - it's a boy - a very special little boy in...",
-                                          ),
-                                          TableCell('eBC19) Rectangle landspace single...',
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Center(
-                        child: Column(
-                          children: [
-                            SizedBox(height: 20,),
-                            HeaderText('Completed Template Library'),
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: _borderColor,
-                                  ),
-                                ),
-                                margin: EdgeInsets.fromLTRB(0.0, 20.0, 20.0, 20.0),
-                                padding: EdgeInsets.all(10.0),
-                                child: Scrollbar(
-                                  isAlwaysShown: true,
-                                  controller: _CompletedTemplateScrollController,
-                                  child: SingleChildScrollView(
-                                    controller: _CompletedTemplateScrollController,
-                                    scrollDirection: Axis.vertical,
-                                    child: Table(
-                                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                                      children: [
-                                        TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),TableRow( children: [
-                                          TableCell('untitled 1'),
-                                          TableCell(""),
-                                          TableCell(''),
-                                        ]),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      child: Center(
-                        child: Column(
-                          children: [
-                            SizedBox(height: 20.0,),
-                            HeaderText('Recently Opened'),
-                            SizedBox(height: 20.0,),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: _borderColor,
-                                  ),
-                                ),
-                                width: 200.0,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 150.0,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(),
-                                      ),
-                                      child: Image.asset('images/template_sample.png',),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  SizedBox(height: 20.0,),
-                                  HeaderText('My Library'),
-                                  CustomButton('Import'),
-                                  CustomButton('Directory'),
-                                  CustomButton('Video'),
-                                  CustomButton('Images'),
-                                  CustomButton('Voice'),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      width: 200,
-                    ),
-                    SizedBox(width: 20.0,),
-                  ],
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(76.0, 20.0, 76.0, 150.0),
+                  color: Colors.white,
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(20.0),
-                height: 80.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CustomButton('Book Builder'),
-                    CustomButton('Tutorials'),
-                    CustomButton('Buy Credits'),
-                    CustomButton('Flip Pages'),
-                    CustomButton('Products Page'),
-                  ],
+              ResizebleWidget(
+                type: 'right',
+                child: Container(
+                  color: Colors.white,
                 ),
               ),
-              SizedBox(height: 50.0,),
             ],
           ),
         ),
@@ -511,72 +101,50 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  /*
-    Widget TableCell(String txt)
-    Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time:  Aug 15 2020 7:45 PM
-
-    Widget: TableCell
-    Parameters: txt(String) - Text in cell of table
-
-    Return: Padding
-   */
-  Widget TableCell(String txt) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: 10.0,
-        horizontal: 10.0
-      ),
-      child: Text(txt,
-        textAlign: TextAlign.center,
+  Widget TemplatePreview(String title, String img_url) {
+    return Center(
+      child: Column(
+        children: [
+          Text(title),
+        ],
       ),
     );
   }
 
   /*
-    Widget CustomButton(String txt)
+    Widget CanvasButton(String txt)
     Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time:  Aug 15 2020 8:08 PM
+    Created Date & Time:  Aug 17 2020 7:20 AM
 
-    Widget: CustomButton
+    Widget: CanvasButton
     Parameters: txt(String) - Text in button
-    Return: FlatButton
+    Return: OutlineButton
    */
-  Widget CustomButton(String txt) {
-    return FlatButton(
-      color: Theme.of(context).primaryColor,
-      textColor: Colors.black,
-      hoverColor: Colors.white,
-      disabledColor: Colors.grey,
-      disabledTextColor: Colors.black,
-      padding: EdgeInsets.all(8.0),
-      splashColor: Colors.grey,
-      onPressed: () {
-        /*...*/
-      },
-      child: Text(txt,
-        style: TextStyle(fontSize: 20.0),
-      ),
-    );
-  }
-
-  /*
-    Widget HeaderText(String txt)
-    Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time:  Aug 15 2020 8:43PM
-
-    Widget: HeaderText
-    Description:  Text with Header style
-    Parameters: txt(String) - content of header text
-    Return: Text
-   */
-  Widget HeaderText(String txt) {
-    return Text(txt,
-      style: TextStyle(
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
-        fontStyle: FontStyle.italic,
-      ),
+  Widget CanvasButton(String txt) {
+    return Row(
+      children: [
+        SizedBox(width: 5.0,),
+        OutlineButton(
+          borderSide: BorderSide(
+            color: Colors.grey,
+            width: 5.0,
+          ),
+          color: Theme
+              .of(context)
+              .primaryColor,
+          textColor: Colors.black,
+          hoverColor: Colors.white,
+          disabledTextColor: Colors.black,
+          padding: EdgeInsets.all(8.0),
+          splashColor: Colors.grey,
+          onPressed: () {
+            /*...*/
+          },
+          child: Text(txt,
+            style: TextStyle(fontSize: 20.0),
+          ),
+        )
+      ],
     );
   }
 }
