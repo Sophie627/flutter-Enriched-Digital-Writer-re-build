@@ -78,20 +78,57 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               ResizebleWidget(
                 type: 'left',
-                child: Container(
-                  color: Colors.white,
+                child: Scrollbar(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          TemplatePreview("untitled", 'images/template_sample.png'),
+                          TemplatePreview("untitled1", 'images/template_sample.png'),
+                          TemplatePreview("untitled2", 'images/template_sample.png'),
+                          TemplatePreview("untitled3", 'images/template_sample.png'),
+                          TemplatePreview("untitled4", 'images/template_sample.png'),
+                          TemplatePreview("untitled5", 'images/template_sample.png'),
+                          TemplatePreview("untitled6", 'images/template_sample.png'),
+                          TemplatePreview("untitled7", 'images/template_sample.png'),
+                          TemplatePreview("untitled8", 'images/template_sample.png'),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Expanded(
                 child: Container(
                   margin: EdgeInsets.fromLTRB(76.0, 20.0, 76.0, 150.0),
-                  color: Colors.white,
+//                  color: Colors.white,
+                  child: Image.asset("images/template.png",
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
               ResizebleWidget(
                 type: 'right',
-                child: Container(
-                  color: Colors.white,
+                child: Scrollbar(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      color: Colors.white,
+                      margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                      child: Column(
+                        children: [
+                          CanvasImage("images/canvas_image.png"),
+                          CanvasImage("images/canvas_image.png"),
+                          CanvasImage("images/canvas_image.png"),
+                          CanvasImage("images/canvas_image.png"),
+                          CanvasImage("images/canvas_image.png"),
+                          CanvasImage("images/canvas_image.png"),
+                          CanvasImage("images/canvas_image.png"),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -101,11 +138,45 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget TemplatePreview(String title, String img_url) {
+  Widget TemplatePreview(String title, String img_path) {
     return Center(
       child: Column(
         children: [
-          Text(title),
+          SizedBox(height: 20.0,),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey,
+              ),
+            ),
+            child: Image.asset(img_path,
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+          SizedBox(height: 20.0,),
+          Text(title,
+            style: TextStyle(
+              fontSize: 14.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget CanvasImage(String img_path) {
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(height: 20.0,),
+          Container(
+            width: double.infinity,
+            child: Image.asset(img_path,
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+          SizedBox(height: 20.0,),
         ],
       ),
     );

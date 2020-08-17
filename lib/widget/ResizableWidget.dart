@@ -33,14 +33,22 @@ class _ResizebleWidgetState extends State<ResizebleWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.symmetric(vertical: BorderSide(
+          width: 0,
+          color: Colors.grey[400],
+        )),
+      ),
       height: height,
       width: width,
-      color: Colors.white,
       child: widget.type == 'left'
       ? Row(
         children: [
           Expanded(
-            child: Container(),
+            child: Container(
+              child: widget.child,
+            ),
           ),
           Container(
             child: ManipulatingBall(
@@ -74,7 +82,9 @@ class _ResizebleWidgetState extends State<ResizebleWidget> {
             ),
           ),
           Expanded(
-            child: Container(),
+            child: Container(
+              child: widget.child,
+            ),
           ),
         ],
       ),
@@ -119,13 +129,7 @@ class _ManipulatingBallState extends State<ManipulatingBall> {
       child: Container(
         height: MediaQuery.of(context).size.height - 56.0,
         child: Center(
-          child: Text(widget.type == 'left' ? '>' : '<',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25.0,
-            ),
-          ),
+          child: Image.asset("images/" + widget.type + ".png"),
         ),
       ),
     );
