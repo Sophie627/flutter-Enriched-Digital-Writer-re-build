@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final ScrollController _NewTemplateScrollController = ScrollController();
   final ScrollController _CompletedTemplateScrollController = ScrollController();
 
+  final Color _borderColor = Colors.grey;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,9 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 40.0,
             child: Image.asset('images/logo.png',
             fit: BoxFit.fitHeight,
-          ),
-          decoration: BoxDecoration(
-            border: Border.all(),
           ),
         ),
         backgroundColor: Theme.of(context).primaryColor,
@@ -85,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   border: Border.all(
-                                    color: Colors.black,
+                                    color: _borderColor,
                                   ),
                                 ),
                                 child: Scrollbar(
@@ -283,8 +284,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.white,
+                                  border: Border.all(
+                                    color: _borderColor,
+                                  ),
                                 ),
-                                margin: EdgeInsets.all(20.0),
+                                margin: EdgeInsets.fromLTRB(0.0, 20.0, 20.0, 20.0),
                                 padding: EdgeInsets.all(10.0),
                                 child: Scrollbar(
                                   isAlwaysShown: true,
@@ -440,7 +444,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             Expanded(
                               flex: 1,
                               child: Container(
-                                color: Colors.white,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: _borderColor,
+                                  ),
+                                ),
                                 width: 200.0,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -461,7 +470,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                  CustomButton('My Library'),
+                                  SizedBox(height: 20.0,),
+                                  HeaderText('My Library'),
                                   CustomButton('Import'),
                                   CustomButton('Directory'),
                                   CustomButton('Video'),
@@ -475,6 +485,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       width: 200,
                     ),
+                    SizedBox(width: 20.0,),
                   ],
                 ),
               ),
