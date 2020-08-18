@@ -1,3 +1,4 @@
+import 'package:enriched_digital_writer/widget/HeadingText.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreenPage extends StatefulWidget {
@@ -56,7 +57,7 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
                         child: Column(
                           children: [
                             SizedBox(height: 20,),
-                            HeaderText('New Template Library'),
+                            HeadingText(txt: 'New Template Library'),
                             Expanded(
                               child: Container(
                                 margin: EdgeInsets.all(20.0),
@@ -257,7 +258,7 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
                         child: Column(
                           children: [
                             SizedBox(height: 20,),
-                            HeaderText('Completed Template Library'),
+                            HeadingText(txt: 'Completed Template Library'),
                             Expanded(
                               child: Container(
                                 decoration: BoxDecoration(
@@ -417,7 +418,7 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
                         child: Column(
                           children: [
                             SizedBox(height: 20.0,),
-                            HeaderText('Recently Opened'),
+                            HeadingText(txt: 'Recently Opened'),
                             SizedBox(height: 20.0,),
                             Expanded(
                               flex: 1,
@@ -449,7 +450,7 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   SizedBox(height: 20.0,),
-                                  HeaderText('My Library'),
+                                  HeadingText(txt: 'My Library'),
                                   CustomButton('Import'),
                                   CustomButton('Directory'),
                                   CustomButton('Video'),
@@ -534,26 +535,6 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
       },
       child: Text(txt,
         style: TextStyle(fontSize: 20.0),
-      ),
-    );
-  }
-
-  /*
-    Widget HeaderText(String txt)
-    Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time:  Aug 15 2020 8:43PM
-
-    Widget: HeaderText
-    Description:  Text with Header style
-    Parameters: txt(String) - content of header text
-    Return: Text
-   */
-  Widget HeaderText(String txt) {
-    return Text(txt,
-      style: TextStyle(
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
-        fontStyle: FontStyle.italic,
       ),
     );
   }

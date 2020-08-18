@@ -1,6 +1,8 @@
 import 'dart:html';
 
-import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
+import 'package:enriched_digital_writer/widget/CustomButton.dart';
+import 'package:enriched_digital_writer/widget/HeadingText.dart';
+import 'package:enriched_digital_writer/widget/TemplatePreview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -39,149 +41,78 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       body: Center(
-        child: Container(
-          color: Theme.of(context).primaryColor,
-          child: Column(
-            children: [
-              Container(
-                height: 50.0,
-              ),
-              Expanded(
-                child: Container(
-                  child: Row(
-                    children: [
-                      SizedBox(width: 20.0,),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.grey,
-                            ),
+        child: Row(
+          children: [
+            SizedBox(width: 20.0,),
+            Expanded(
+              child: Container(
+                color: Theme.of(context).primaryColor,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 80.0,
+                      child: Center(
+                        child: HeadingText(txt: "Select Templates To Compile"),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.grey,
                           ),
-
+                        ),
+                        child: Table(
+                          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                          children: [
+                            TableRow(
+                              children: [
+                                TemplatePreview(
+                                  title: 'untitled',
+                                  imagePath: [
+                                    'images/template_sample.png',
+                                  ],
+                                ),TemplatePreview(
+                                  title: 'untitled',
+                                  imagePath: [
+                                    'images/template_sample.png',
+                                  ],
+                                ),TemplatePreview(
+                                  title: 'untitled',
+                                  imagePath: [
+                                    'images/template_sample.png',
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(width: 20.0,),
-                    ],
-                  ),
+                    ),
+                    Container(
+                      height: 80.0,
+                      margin: EdgeInsets.only(right: 20.0,),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          CustomButton(txt: "Save to PDF",),
+                          CustomButton(txt: "Compile Flip Book",),
+                          CustomButton(txt: "Back to Dashboard",),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Container(
-                height: 50.0,
-              ),
-            ],
-          ),
+            ),
+            SizedBox(width: 20.0,),
+          ],
         ),
       ),
-    );
-  }
-
-  /*
-    Widget TemplatePreview(String title, String img_path)
-    Author: Sophie(bolesalav@gmail.com)
-    Created Date & Time:  Aug 17 2020 10:59PM
-
-    Widget: TemplatePreview
-    Description:  Template Image
-    Parameters: title(String) - Title of Template
-                img_path(String)  - Image path of Template
-
-     Return:  Center
-   */
-  Widget TemplatePreview(String title, String img_path) {
-    return Center(
-      child: Column(
-        children: [
-          SizedBox(height: 20.0,),
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey,
-              ),
-            ),
-            child: Image.asset(img_path,
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-          SizedBox(height: 20.0,),
-          Text(title,
-            style: TextStyle(
-              fontSize: 14.0,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /*
-    Widget FrameImage(String img_path)
-    Author: Sophie(bolesalav@gmail.com)
-    Created Date & Time:  Aug 17 2020 11:01 PM
-
-    Widget: FrameImage
-    Description:  Frame Image
-    Parameters: img_path(String)  - Image path of Template
-
-     Return:  Center
-   */
-  Widget FrameImage(String img_path) {
-    return Center(
-      child: Column(
-        children: [
-          SizedBox(height: 20.0,),
-          Container(
-            width: double.infinity,
-            child: Image.asset(img_path,
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-          SizedBox(height: 20.0,),
-        ],
-      ),
-    );
-  }
-
-  /*
-    Widget CanvasButton(String txt)
-    Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time:  Aug 17 2020 7:20 AM
-
-    Widget: CanvasButton
-    Parameters: txt(String) - Text in button
-    Return: OutlineButton
-   */
-  Widget CanvasButton(String txt) {
-    return Row(
-      children: [
-        SizedBox(width: 5.0,),
-        ButtonTheme(
-          minWidth: 66.0,
-          child: OutlineButton(
-            borderSide: BorderSide(
-              color: Colors.grey,
-              width: 5.0,
-            ),
-            color: Theme
-                .of(context)
-                .primaryColor,
-            textColor: Colors.black,
-            hoverColor: Colors.white,
-            disabledTextColor: Colors.black,
-            padding: EdgeInsets.all(8.0),
-            splashColor: Colors.grey,
-            onPressed: () {
-              /*...*/
-            },
-            child: Text(txt,
-              style: TextStyle(fontSize: 16.0),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

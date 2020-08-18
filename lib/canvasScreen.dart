@@ -1,3 +1,4 @@
+import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:flutter/material.dart';
 
 class CanvasPage extends StatefulWidget {
