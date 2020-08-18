@@ -66,30 +66,53 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.grey,
                           ),
                         ),
-                        child: Table(
-                          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                          children: [
-                            TableRow(
+                        child: Scrollbar(
+                          child: SingleChildScrollView(
+                            child: Table(
+                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                               children: [
-                                TemplatePreview(
-                                  title: 'untitled',
-                                  imagePath: [
-                                    'images/template_sample.png',
+                                TableRow(
+                                  children: [
+                                    TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: [
+                                        'images/template_sample.png',
+                                      ],
+                                    ),TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: [
+                                        'images/template_sample.png',
+                                      ],
+                                    ),TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: [
+                                        'images/template_sample.png',
+                                      ],
+                                    ),
                                   ],
-                                ),TemplatePreview(
-                                  title: 'untitled',
-                                  imagePath: [
-                                    'images/template_sample.png',
-                                  ],
-                                ),TemplatePreview(
-                                  title: 'untitled',
-                                  imagePath: [
-                                    'images/template_sample.png',
+                                ),TableRow(
+                                  children: [
+                                    TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: [
+                                        'images/template_sample.png',
+                                      ],
+                                    ),TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: [
+                                        'images/template_sample.png',
+                                      ],
+                                    ),TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: [
+                                        'images/template_sample.png',
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),

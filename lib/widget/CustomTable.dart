@@ -1,32 +1,30 @@
 /*
-    class TemplatePreview extends StatefulWidget
+    class CustomTable extends StatefulWidget
     Author: Sophie(bolesalavb@gmail.com)
     Created Date & Time:  Aug 18 2020 9:22 PM
 
-    Class: TemplatePreview
-    Description:  Template Preview Container
-                  title(String) - Title of template
-                  imagePath(List<String>) - Template's images path array
-                  margin(double)  - Margin of template container
+    Class: CustomTable
+    Description:  Customized FlatButton for this app
+                  txt(String) - Text in button
    */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TemplatePreview extends StatefulWidget {
+class CustomTable extends StatefulWidget {
   final String title;
   final List<String> imagePath;
   final double margin;
 
-  TemplatePreview({
+  CustomTable({
     this.title,
     this.imagePath,
     this.margin = 10.0,
   });
 
-  _TemplatePreviewState createState() => _TemplatePreviewState();
+  _CustomTableState createState() => _CustomTableState();
 }
 
-class _TemplatePreviewState extends State<TemplatePreview> {
+class _CustomTableState extends State<CustomTable> {
 
   @override
   Widget build(BuildContext context) {
@@ -73,39 +71,6 @@ class _TemplatePreviewState extends State<TemplatePreview> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  /*
-    Widget CircleButton(String txt)
-    Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time: Aug 18 2020 10:15 PM
-
-    Widget: CircleButton
-    Parameters: txt(String) - Text in circle button
-   */
-  Widget CircleButton(String txt) {
-
-    return Container(
-      width: 20.0,
-      height: 20.0,
-      decoration: new BoxDecoration(
-        color: Colors.black,
-        shape: BoxShape.circle,
-        border: Border.all(
-          width: 2.0,
-          color: Colors.white,
-        ),
-      ),
-      child: Center(
-        child: Text(txt,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 14.0
-          ),
-        ),
       ),
     );
   }
