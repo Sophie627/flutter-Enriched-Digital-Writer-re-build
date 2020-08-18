@@ -33,191 +33,44 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final ScrollController _NewTemplateScrollController = ScrollController();
-  final ScrollController _CompletedTemplateScrollController = ScrollController();
 
   final Color _borderColor = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: PreferredSize(
-//        preferredSize: Size.fromHeight(100.0),
-//        child: AppBar(
-//          title: Stack(
-//            children: [
-//              Positioned(
-//                child: Container(
-//                  height: 50.0,
-//                  child: Image.asset('images/logo.png',
-//                    fit: BoxFit.fitHeight,
-//                  ),
-//                ),
-//              ),
-//              Positioned(
-////                top: 0,
-//                child: Row(
-//                  mainAxisAlignment: MainAxisAlignment.center,
-//                  crossAxisAlignment: CrossAxisAlignment.center,
-//                  children: [
-//                    CanvasButton('Open'),
-//                    CanvasButton('Save'),
-//                    CanvasButton('Print'),
-//                    CanvasButton('Delete'),
-//                    CanvasButton('Copy'),
-//                    CanvasButton('Paste'),
-//                    CanvasButton('Undo'),
-//                    CanvasButton('Redo'),
-//                    CanvasButton('Text Box'),
-//                    CanvasButton('Spell'),
-//                    CanvasButton('Font Color'),
-//                    CanvasButton('Fonts'),
-//                    CanvasButton('Zoom'),
-//                    CanvasButton('Un Freeze'),
-//                    CanvasButton('Page Color'),
-//                    CanvasButton('Help'),
-//                  ],
-//                ),
-//              ),
-//            ],
-//          ),
-//          backgroundColor: Theme.of(context).primaryColor,
-//          shadowColor: Theme.of(context).primaryColor,
-//        ),
-//      ),
       body: Center(
         child: Container(
           color: Theme.of(context).primaryColor,
           child: Column(
             children: [
               Container(
-                height: 100.0,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 20.0,
-                      left: 30.0,
-                      child: Container(
-                        height: 60.0,
-                        child: Image.asset('images/logo.png',
-                          fit: BoxFit.fitHeight,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 100.0,
-//                      top: 20.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CanvasButton('Open'),
-                          CanvasButton('Save'),
-                          CanvasButton('Print'),
-                          CanvasButton('Delete'),
-                          CanvasButton('Copy'),
-                          CanvasButton('Paste'),
-                          CanvasButton('Undo'),
-                          CanvasButton('Redo'),
-                          CanvasButton('Text Box'),
-                          CanvasButton('Spell'),
-                          CanvasButton('Font Color'),
-                          CanvasButton('Fonts'),
-                          CanvasButton('Zoom'),
-                          CanvasButton('Un Freeze'),
-                          CanvasButton('Page Color'),
-                          CanvasButton('Help'),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                height: 50.0,
               ),
               Expanded(
-                child: Row(
-                  children: [
-                    SizedBox(width: 20.0,),
-                    ResizebleWidget(
-                      type: 'left',
-                      child: Scrollbar(
-                        child: SingleChildScrollView(
-                          child: Container(
-                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                child: Container(
+                  child: Row(
+                    children: [
+                      SizedBox(width: 20.0,),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
                             color: Colors.white,
-                            child: Column(
-                              children: [
-                                TemplatePreview("untitled", 'images/template_sample.png'),
-                                TemplatePreview("untitled1", 'images/template_sample.png'),
-                                TemplatePreview("untitled2", 'images/template_sample.png'),
-                                TemplatePreview("untitled3", 'images/template_sample.png'),
-                                TemplatePreview("untitled4", 'images/template_sample.png'),
-                                TemplatePreview("untitled5", 'images/template_sample.png'),
-                                TemplatePreview("untitled6", 'images/template_sample.png'),
-                                TemplatePreview("untitled7", 'images/template_sample.png'),
-                                TemplatePreview("untitled8", 'images/template_sample.png'),
-                              ],
+                            border: Border.all(
+                              color: Colors.grey,
                             ),
                           ),
+
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Scrollbar(
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Scrollbar(
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: Offset(0, 3), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-                                margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
-                                height: MediaQuery.of(context).size.height - 56.0,
-                                child: Image.asset("images/template.png",
-                                  fit: BoxFit.fitHeight,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    ResizebleWidget(
-                      type: 'right',
-                      child: Scrollbar(
-                        child: SingleChildScrollView(
-                          child: Container(
-                            color: Colors.white,
-                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                            child: Column(
-                              children: [
-                                FrameImage("images/canvas_image.png"),
-                                FrameImage("images/canvas_image.png"),
-                                FrameImage("images/canvas_image.png"),
-                                FrameImage("images/canvas_image.png"),
-                                FrameImage("images/canvas_image.png"),
-                                FrameImage("images/canvas_image.png"),
-                                FrameImage("images/canvas_image.png"),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 20.0,),
-                  ],
+                      SizedBox(width: 20.0,),
+                    ],
+                  ),
                 ),
               ),
-              SizedBox(height: 20.0,),
+              Container(
+                height: 50.0,
+              ),
             ],
           ),
         ),
