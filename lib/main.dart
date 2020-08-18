@@ -42,30 +42,35 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: Stack(
           children: [
             Container(
               height: 40.0,
-                child: Image.asset('images/logo.png',
+              child: Image.asset('images/logo.png',
                 fit: BoxFit.fitHeight,
               ),
             ),
-            CanvasButton('Open'),
-            CanvasButton('Save'),
-            CanvasButton('Print'),
-            CanvasButton('Delete'),
-            CanvasButton('Copy'),
-            CanvasButton('Paste'),
-            CanvasButton('Undo'),
-            CanvasButton('Redo'),
-            CanvasButton('Text Box'),
-            CanvasButton('Spell'),
-            CanvasButton('Font Color'),
-            CanvasButton('Fonts'),
-            CanvasButton('Zoom'),
-            CanvasButton('Un Freeze'),
-            CanvasButton('Page Color'),
-            CanvasButton('Help'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CanvasButton('Open'),
+                CanvasButton('Save'),
+                CanvasButton('Print'),
+                CanvasButton('Delete'),
+                CanvasButton('Copy'),
+                CanvasButton('Paste'),
+                CanvasButton('Undo'),
+                CanvasButton('Redo'),
+                CanvasButton('Text Box'),
+                CanvasButton('Spell'),
+                CanvasButton('Font Color'),
+                CanvasButton('Fonts'),
+                CanvasButton('Zoom'),
+                CanvasButton('Un Freeze'),
+                CanvasButton('Page Color'),
+                CanvasButton('Help'),
+              ],
+            ),
           ],
         ),
         backgroundColor: Theme.of(context).primaryColor,
@@ -108,22 +113,27 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Scrollbar(
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3), // changes position of shadow
+                          child: Scrollbar(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: Offset(0, 3), // changes position of shadow
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
-                            height: MediaQuery.of(context).size.height - 56.0,
-                            child: Image.asset("images/template.png",
-                              fit: BoxFit.fitHeight,
+                                margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
+                                height: MediaQuery.of(context).size.height - 56.0,
+                                child: Image.asset("images/template.png",
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              ),
                             ),
                           ),
                         ),
