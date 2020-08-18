@@ -33,17 +33,36 @@ class _TemplatePreviewState extends State<TemplatePreview> {
       child: Column(
         children: [
           SizedBox(height: 20.0,),
-          Container(
-            margin: EdgeInsets.all(widget.margin),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey,
+          Stack(
+            children: [
+              Container(
+                margin: EdgeInsets.all(widget.margin),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                ),
+                child: Image.asset(widget.imagePath[0],
+                  fit: BoxFit.fitWidth,
+                ),
               ),
-            ),
-            child: Image.asset(widget.imagePath[0],
-              fit: BoxFit.fitWidth,
-            ),
+              Positioned(
+                right: 0.0,
+                top: 20.0,
+                child: CircleButton('X'),
+              ),
+              Positioned(
+                right: 0.0,
+                top: 40.0,
+                child: CircleButton('<'),
+              ),
+              Positioned(
+                right: 0.0,
+                top: 60.0,
+                child: CircleButton('>'),
+              ),
+            ],
           ),
           SizedBox(height: 20.0,),
           Text(widget.title,
@@ -56,4 +75,36 @@ class _TemplatePreviewState extends State<TemplatePreview> {
     );
   }
 
+  /*
+    Widget CircleButton(String txt)
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time: Aug 18 2020 10:15 PM
+
+    Widget: CircleButton
+    Parameters: txt(String) - Text in circle button
+   */
+  Widget CircleButton(String txt) {
+
+    return Container(
+      width: 20.0,
+      height: 20.0,
+      decoration: new BoxDecoration(
+        color: Colors.black,
+        shape: BoxShape.circle,
+        border: Border.all(
+          width: 2.0,
+          color: Colors.white,
+        ),
+      ),
+      child: Center(
+        child: Text(txt,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 14.0
+          ),
+        ),
+      ),
+    );
+  }
 }
