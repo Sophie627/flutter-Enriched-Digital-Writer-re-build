@@ -74,63 +74,88 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Container(
           color: Theme.of(context).primaryColor,
-          child: Row(
+          child: Column(
             children: [
-              ResizebleWidget(
-                type: 'left',
-                child: Scrollbar(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          TemplatePreview("untitled", 'images/template_sample.png'),
-                          TemplatePreview("untitled1", 'images/template_sample.png'),
-                          TemplatePreview("untitled2", 'images/template_sample.png'),
-                          TemplatePreview("untitled3", 'images/template_sample.png'),
-                          TemplatePreview("untitled4", 'images/template_sample.png'),
-                          TemplatePreview("untitled5", 'images/template_sample.png'),
-                          TemplatePreview("untitled6", 'images/template_sample.png'),
-                          TemplatePreview("untitled7", 'images/template_sample.png'),
-                          TemplatePreview("untitled8", 'images/template_sample.png'),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
               Expanded(
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(76.0, 20.0, 76.0, 150.0),
-//                  color: Colors.white,
-                  child: Image.asset("images/template.png",
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-              ResizebleWidget(
-                type: 'right',
-                child: Scrollbar(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      color: Colors.white,
-                      margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                      child: Column(
-                        children: [
-                          CanvasImage("images/canvas_image.png"),
-                          CanvasImage("images/canvas_image.png"),
-                          CanvasImage("images/canvas_image.png"),
-                          CanvasImage("images/canvas_image.png"),
-                          CanvasImage("images/canvas_image.png"),
-                          CanvasImage("images/canvas_image.png"),
-                          CanvasImage("images/canvas_image.png"),
-                        ],
+                child: Row(
+                  children: [
+                    SizedBox(width: 20.0,),
+                    ResizebleWidget(
+                      type: 'left',
+                      child: Scrollbar(
+                        child: SingleChildScrollView(
+                          child: Container(
+                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                            color: Colors.white,
+                            child: Column(
+                              children: [
+                                TemplatePreview("untitled", 'images/template_sample.png'),
+                                TemplatePreview("untitled1", 'images/template_sample.png'),
+                                TemplatePreview("untitled2", 'images/template_sample.png'),
+                                TemplatePreview("untitled3", 'images/template_sample.png'),
+                                TemplatePreview("untitled4", 'images/template_sample.png'),
+                                TemplatePreview("untitled5", 'images/template_sample.png'),
+                                TemplatePreview("untitled6", 'images/template_sample.png'),
+                                TemplatePreview("untitled7", 'images/template_sample.png'),
+                                TemplatePreview("untitled8", 'images/template_sample.png'),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    Expanded(
+                      child: Scrollbar(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
+                            height: MediaQuery.of(context).size.height - 56.0,
+                            child: Image.asset("images/template.png",
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    ResizebleWidget(
+                      type: 'right',
+                      child: Scrollbar(
+                        child: SingleChildScrollView(
+                          child: Container(
+                            color: Colors.white,
+                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                            child: Column(
+                              children: [
+                                FrameImage("images/canvas_image.png"),
+                                FrameImage("images/canvas_image.png"),
+                                FrameImage("images/canvas_image.png"),
+                                FrameImage("images/canvas_image.png"),
+                                FrameImage("images/canvas_image.png"),
+                                FrameImage("images/canvas_image.png"),
+                                FrameImage("images/canvas_image.png"),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20.0,),
+                  ],
                 ),
               ),
+              SizedBox(height: 20.0,),
             ],
           ),
         ),
@@ -138,6 +163,18 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  /*
+    Widget TemplatePreview(String title, String img_path)
+    Author: Sophie(bolesalav@gmail.com)
+    Created Date & Time:  Aug 17 2020 10:59PM
+
+    Widget: TemplatePreview
+    Description:  Template Image
+    Parameters: title(String) - Title of Template
+                img_path(String)  - Image path of Template
+
+     Return:  Center
+   */
   Widget TemplatePreview(String title, String img_path) {
     return Center(
       child: Column(
@@ -165,7 +202,18 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget CanvasImage(String img_path) {
+  /*
+    Widget FrameImage(String img_path)
+    Author: Sophie(bolesalav@gmail.com)
+    Created Date & Time:  Aug 17 2020 11:01 PM
+
+    Widget: FrameImage
+    Description:  Frame Image
+    Parameters: img_path(String)  - Image path of Template
+
+     Return:  Center
+   */
+  Widget FrameImage(String img_path) {
     return Center(
       child: Column(
         children: [
@@ -195,26 +243,29 @@ class _MyHomePageState extends State<MyHomePage> {
     return Row(
       children: [
         SizedBox(width: 5.0,),
-        OutlineButton(
-          borderSide: BorderSide(
-            color: Colors.grey,
-            width: 5.0,
+        ButtonTheme(
+          minWidth: 66.0,
+          child: OutlineButton(
+            borderSide: BorderSide(
+              color: Colors.grey,
+              width: 5.0,
+            ),
+            color: Theme
+                .of(context)
+                .primaryColor,
+            textColor: Colors.black,
+            hoverColor: Colors.white,
+            disabledTextColor: Colors.black,
+            padding: EdgeInsets.all(8.0),
+            splashColor: Colors.grey,
+            onPressed: () {
+              /*...*/
+            },
+            child: Text(txt,
+              style: TextStyle(fontSize: 16.0),
+            ),
           ),
-          color: Theme
-              .of(context)
-              .primaryColor,
-          textColor: Colors.black,
-          hoverColor: Colors.white,
-          disabledTextColor: Colors.black,
-          padding: EdgeInsets.all(8.0),
-          splashColor: Colors.grey,
-          onPressed: () {
-            /*...*/
-          },
-          child: Text(txt,
-            style: TextStyle(fontSize: 20.0),
-          ),
-        )
+        ),
       ],
     );
   }

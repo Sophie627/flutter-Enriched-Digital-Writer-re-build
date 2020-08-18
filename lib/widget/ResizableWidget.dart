@@ -35,10 +35,9 @@ class _ResizebleWidgetState extends State<ResizebleWidget> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.symmetric(vertical: BorderSide(
-          width: 0,
-          color: Colors.grey[400],
-        )),
+        border: Border.all(
+          color: Colors.grey,
+        ),
       ),
       height: height,
       width: width,
