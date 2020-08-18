@@ -41,46 +41,98 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Stack(
-          children: [
-            Container(
-              height: 40.0,
-              child: Image.asset('images/logo.png',
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CanvasButton('Open'),
-                CanvasButton('Save'),
-                CanvasButton('Print'),
-                CanvasButton('Delete'),
-                CanvasButton('Copy'),
-                CanvasButton('Paste'),
-                CanvasButton('Undo'),
-                CanvasButton('Redo'),
-                CanvasButton('Text Box'),
-                CanvasButton('Spell'),
-                CanvasButton('Font Color'),
-                CanvasButton('Fonts'),
-                CanvasButton('Zoom'),
-                CanvasButton('Un Freeze'),
-                CanvasButton('Page Color'),
-                CanvasButton('Help'),
-              ],
-            ),
-          ],
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
-        shadowColor: Theme.of(context).primaryColor,
-      ),
+//      appBar: PreferredSize(
+//        preferredSize: Size.fromHeight(100.0),
+//        child: AppBar(
+//          title: Stack(
+//            children: [
+//              Positioned(
+//                child: Container(
+//                  height: 50.0,
+//                  child: Image.asset('images/logo.png',
+//                    fit: BoxFit.fitHeight,
+//                  ),
+//                ),
+//              ),
+//              Positioned(
+////                top: 0,
+//                child: Row(
+//                  mainAxisAlignment: MainAxisAlignment.center,
+//                  crossAxisAlignment: CrossAxisAlignment.center,
+//                  children: [
+//                    CanvasButton('Open'),
+//                    CanvasButton('Save'),
+//                    CanvasButton('Print'),
+//                    CanvasButton('Delete'),
+//                    CanvasButton('Copy'),
+//                    CanvasButton('Paste'),
+//                    CanvasButton('Undo'),
+//                    CanvasButton('Redo'),
+//                    CanvasButton('Text Box'),
+//                    CanvasButton('Spell'),
+//                    CanvasButton('Font Color'),
+//                    CanvasButton('Fonts'),
+//                    CanvasButton('Zoom'),
+//                    CanvasButton('Un Freeze'),
+//                    CanvasButton('Page Color'),
+//                    CanvasButton('Help'),
+//                  ],
+//                ),
+//              ),
+//            ],
+//          ),
+//          backgroundColor: Theme.of(context).primaryColor,
+//          shadowColor: Theme.of(context).primaryColor,
+//        ),
+//      ),
       body: Center(
         child: Container(
           color: Theme.of(context).primaryColor,
           child: Column(
             children: [
+              Container(
+                height: 100.0,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: 20.0,
+                      left: 30.0,
+                      child: Container(
+                        height: 60.0,
+                        child: Image.asset('images/logo.png',
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 100.0,
+//                      top: 20.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CanvasButton('Open'),
+                          CanvasButton('Save'),
+                          CanvasButton('Print'),
+                          CanvasButton('Delete'),
+                          CanvasButton('Copy'),
+                          CanvasButton('Paste'),
+                          CanvasButton('Undo'),
+                          CanvasButton('Redo'),
+                          CanvasButton('Text Box'),
+                          CanvasButton('Spell'),
+                          CanvasButton('Font Color'),
+                          CanvasButton('Fonts'),
+                          CanvasButton('Zoom'),
+                          CanvasButton('Un Freeze'),
+                          CanvasButton('Page Color'),
+                          CanvasButton('Help'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Expanded(
                 child: Row(
                   children: [
