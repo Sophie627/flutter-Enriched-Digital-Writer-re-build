@@ -1,2 +1,2 @@
-start env1 %1
-start env2 %1
+env1 %1
+env2 %1
