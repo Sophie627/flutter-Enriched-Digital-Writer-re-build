@@ -1,16 +1,14 @@
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:flutter/material.dart';
 
-class CanvasPage extends StatefulWidget {
-  CanvasPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class CanvasScreen extends StatefulWidget {
+  CanvasScreen({Key key}) : super(key: key);
 
   @override
-  _CanvasPageState createState() => _CanvasPageState();
+  _CanvasScreenState createState() => _CanvasScreenState();
 }
 
-class _CanvasPageState extends State<CanvasPage> {
+class _CanvasScreenState extends State<CanvasScreen> {
   final ScrollController _NewTemplateScrollController = ScrollController();
   final ScrollController _CompletedTemplateScrollController = ScrollController();
 

@@ -1,16 +1,15 @@
 import 'package:enriched_digital_writer/widget/HeadingText.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class DashboardScreenPage extends StatefulWidget {
-  DashboardScreenPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class DashboardScreen extends StatefulWidget {
+  DashboardScreen({Key key}) : super(key: key);
 
   @override
-  _DashboardScreenPageState createState() => _DashboardScreenPageState();
+  _DashboardScreenState createState() => _DashboardScreenState();
 }
 
-class _DashboardScreenPageState extends State<DashboardScreenPage> {
+class _DashboardScreenState extends State<DashboardScreen> {
   final ScrollController _NewTemplateScrollController = ScrollController();
   final ScrollController _CompletedTemplateScrollController = ScrollController();
 
@@ -29,15 +28,17 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
         backgroundColor: Theme.of(context).primaryColor,
         shadowColor: Theme.of(context).primaryColor,
         actions: [
-          CustomButton('Close'),
+          CustomButton('Close', () {
+            SystemNavigator.pop();
+          }),
           SizedBox(
             width: 30.0,
           ),
-          CustomButton('My Account'),
+          CustomButton('My Account', () {}),
           SizedBox(
             width: 30.0,
           ),
-          CustomButton('Forum'),
+          CustomButton('Forum', () {}),
           SizedBox(
             width: 30.0,
           ),
@@ -451,11 +452,11 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
                                 children: [
                                   SizedBox(height: 20.0,),
                                   HeadingText(txt: 'My Library'),
-                                  CustomButton('Import'),
-                                  CustomButton('Directory'),
-                                  CustomButton('Video'),
-                                  CustomButton('Images'),
-                                  CustomButton('Voice'),
+                                  CustomButton('Import', () {}),
+                                  CustomButton('Directory', () {}),
+                                  CustomButton('Video', () {}),
+                                  CustomButton('Images', () {}),
+                                  CustomButton('Voice', () {}),
                                 ],
                               ),
                             ),
@@ -474,11 +475,15 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    CustomButton('Book Builder'),
-                    CustomButton('Tutorials'),
-                    CustomButton('Buy Credits'),
-                    CustomButton('Flip Pages'),
-                    CustomButton('Products Page'),
+                    CustomButton('Book Builder',
+                        () {
+                          Navigator.of(context).pushNamed("/bookbuilder");
+                        }
+                    ),
+                    CustomButton('Tutorials', () {}),
+                    CustomButton('Buy Credits', () {}),
+                    CustomButton('Flip Pages', () {}),
+                    CustomButton('Products Page', () {}),
                   ],
                 ),
               ),
@@ -521,7 +526,7 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
     Parameters: txt(String) - Text in button
     Return: FlatButton
    */
-  Widget CustomButton(String txt) {
+  Widget CustomButton(String txt, Function func) {
     return FlatButton(
       color: Theme.of(context).primaryColor,
       textColor: Colors.black,
@@ -531,7 +536,7 @@ class _DashboardScreenPageState extends State<DashboardScreenPage> {
       padding: EdgeInsets.all(8.0),
       splashColor: Colors.grey,
       onPressed: () {
-        /*...*/
+        func();
       },
       child: Text(txt,
         style: TextStyle(fontSize: 20.0),
