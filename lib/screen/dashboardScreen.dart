@@ -2,6 +2,8 @@ import 'package:enriched_digital_writer/widget/HeadingText.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:link/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DashboardScreen extends StatefulWidget {
   DashboardScreen({Key key}) : super(key: key);
@@ -15,6 +17,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final ScrollController _CompletedTemplateScrollController = ScrollController();
 
   final Color _borderColor = Colors.grey;
+
+  void _showErrorSnackBar() {
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Oops... the URL couldn\'t be opened!'),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +54,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     SizedBox(
                       width: 30.0,
                     ),
-                    CustomButton('My Account', () {}),
+                    CustomButton('My Account', () async {
+                      const url = 'https://www.enriched.online/my-account/woo-wallet/';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    }),
                     SizedBox(
                       width: 30.0,
                     ),
-                    CustomButton('Forum', () {}),
+                    CustomButton('Forum', () async {
+                      const url = 'https://www.enriched.online/members-page/members-forum-page/';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    }),
                     SizedBox(
                       width: 30.0,
                     ),
@@ -486,10 +510,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Navigator.of(context).pushNamed("/bookbuilder");
                         }
                     ),
-                    CustomButton('Tutorials', () {}),
-                    CustomButton('Buy Credits', () {}),
+                    CustomButton('Tutorials', () async {
+                      const url = 'https://www.enriched.online/watch-it-work/';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    }),
+                    CustomButton('Buy Credits', () async {
+                      const url = 'https://www.enriched.online/my-wallet/';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    }),
                     CustomButton('Flip Pages', () {}),
-                    CustomButton('Products Page', () {}),
+                    CustomButton('Products Page', () async {
+                      const url = 'https://www.enriched.online/products-directory/';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    }),
                   ],
                 ),
               ),
@@ -547,6 +592,37 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: Text(txt,
         style: TextStyle(fontSize: 20.0),
       ),
+    );
+  }
+
+  /*
+    Widget CustomButton(String txt)
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time:  Aug 15 2020 8:08 PM
+
+    Widget: CustomButton
+    Parameters: txt(String) - Text in button
+    Return: FlatButton
+   */
+  Widget LinkButton(String txt, String url) {
+    return Link(
+//      child: FlatButton(
+//        color: Theme.of(context).primaryColor,
+//        textColor: Colors.black,
+//        hoverColor: Colors.white,
+//        disabledColor: Colors.grey,
+//        disabledTextColor: Colors.black,
+//        padding: EdgeInsets.all(8.0),
+//        splashColor: Colors.grey,
+//        onPressed: () {
+//          //
+//        },
+        child: Text(txt,
+          style: TextStyle(fontSize: 20.0),
+        ),
+//      ),
+      url: url,
+      onError: _showErrorSnackBar,
     );
   }
 }
