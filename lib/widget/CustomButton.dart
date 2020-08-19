@@ -21,10 +21,8 @@ class CustomButton extends StatefulWidget {
 }
 
 class _CustomButtonState extends State<CustomButton> {
-
   @override
   Widget build(BuildContext context) {
-
     return OutlineButton(
       borderSide: BorderSide(
         color: Colors.grey,
@@ -36,10 +34,10 @@ class _CustomButtonState extends State<CustomButton> {
       padding: EdgeInsets.all(8.0),
       splashColor: Colors.grey,
       onPressed: widget.onPress,
-      child: Text(widget.txt,
+      child: Text(
+        widget.txt,
         style: TextStyle(fontSize: 20.0),
       ),
     );
   }
-
 }

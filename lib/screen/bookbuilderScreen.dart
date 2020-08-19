@@ -2,6 +2,7 @@ import 'package:enriched_digital_writer/widget/CustomButton.dart';
 import 'package:enriched_digital_writer/widget/HeadingText.dart';
 import 'package:enriched_digital_writer/widget/TemplatePreview.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BookBuilderScreen extends StatefulWidget {
   BookBuilderScreen({Key key}) : super(key: key);
@@ -103,7 +104,15 @@ class _BookBuilderScreenState extends State<BookBuilderScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           BookBuilderButton("Save to PDF", () {}),
-                          BookBuilderButton("Create Flip Book", () {}),
+                          BookBuilderButton("Create Flip Book", () async {
+                            const url =
+                                'https://sophie627.github.io/flippage';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          }),
                           BookBuilderButton("Back to Dashboard", () {
                             Navigator.of(context).pushNamed("/dashboard");
                           }),
