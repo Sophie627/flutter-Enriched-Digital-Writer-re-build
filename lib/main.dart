@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:enriched_digital_writer/widget/CustomButton.dart';
 import 'package:enriched_digital_writer/widget/HeadingText.dart';
 import 'package:enriched_digital_writer/widget/TemplatePreview.dart';
@@ -36,8 +34,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  final Color _borderColor = Colors.grey;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       height: 80.0,
                       child: Center(
-                        child: HeadingText(txt: "Select Templates To Compile"),
+                        child: HeadingText(txt: "Move and Delete Your Pages To Compile"),
                       ),
                     ),
                     Expanded(
@@ -75,38 +71,44 @@ class _MyHomePageState extends State<MyHomePage> {
                                   children: [
                                     TemplatePreview(
                                       title: 'untitled',
-                                      imagePath: [
-                                        'images/template_sample.png',
-                                      ],
+                                      imagePath: 'images/template_sample.png',
                                     ),TemplatePreview(
                                       title: 'untitled',
-                                      imagePath: [
-                                        'images/template_sample.png',
-                                      ],
+                                      imagePath: 'images/template_sample.png',
                                     ),TemplatePreview(
                                       title: 'untitled',
-                                      imagePath: [
-                                        'images/template_sample.png',
-                                      ],
+                                      imagePath: 'images/template_sample.png',
+                                    ),TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: 'images/template_sample.png',
+                                    ),TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: 'images/template_sample.png',
+                                    ),TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: 'images/template_sample.png',
                                     ),
                                   ],
                                 ),TableRow(
                                   children: [
                                     TemplatePreview(
                                       title: 'untitled',
-                                      imagePath: [
-                                        'images/template_sample.png',
-                                      ],
+                                      imagePath: 'images/template_sample.png',
                                     ),TemplatePreview(
                                       title: 'untitled',
-                                      imagePath: [
-                                        'images/template_sample.png',
-                                      ],
+                                      imagePath: 'images/template_sample.png',
                                     ),TemplatePreview(
                                       title: 'untitled',
-                                      imagePath: [
-                                        'images/template_sample.png',
-                                      ],
+                                      imagePath: 'images/template_sample.png',
+                                    ),TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: 'images/template_sample.png',
+                                    ),TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: 'images/template_sample.png',
+                                    ),TemplatePreview(
+                                      title: 'untitled',
+                                      imagePath: 'images/template_sample.png',
                                     ),
                                   ],
                                 ),
@@ -117,14 +119,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Container(
-                      height: 80.0,
+                      height: 81.0,
                       margin: EdgeInsets.only(right: 20.0,),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          CustomButton(txt: "Save to PDF",),
-                          CustomButton(txt: "Compile Flip Book",),
-                          CustomButton(txt: "Back to Dashboard",),
+                          BookBuilderButton("Save to PDF",),
+                          BookBuilderButton("Create Flip Book",),
+                          BookBuilderButton("Back to Dashboard",),
                         ],
                       ),
                     ),
@@ -136,6 +138,16 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget BookBuilderButton(String txt) {
+
+    return Row(
+      children: [
+        SizedBox(width: 20.0,),
+        CustomButton(txt: txt,),
+      ],
     );
   }
 }

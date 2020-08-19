@@ -11,14 +11,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomTable extends StatefulWidget {
-  final String title;
-  final List<String> imagePath;
-  final double margin;
+  final int rowCount;
+  final List<Widget> children;
 
   CustomTable({
-    this.title,
-    this.imagePath,
-    this.margin = 10.0,
+    this.rowCount = 3,
+    this.children,
   });
 
   _CustomTableState createState() => _CustomTableState();
@@ -26,52 +24,53 @@ class CustomTable extends StatefulWidget {
 
 class _CustomTableState extends State<CustomTable> {
 
+  final List<TableRow> _tableRowChildren = [];
+
   @override
   Widget build(BuildContext context) {
 
-    return Center(
-      child: Column(
-        children: [
-          SizedBox(height: 20.0,),
-          Stack(
+
+    void buildTableRowChildren() {
+      if(widget.children.length == 0) {
+        this._tableRowChildren.add(
+          TableRow(
             children: [
-              Container(
-                margin: EdgeInsets.all(widget.margin),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                  ),
-                ),
-                child: Image.asset(widget.imagePath[0],
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
-              Positioned(
-                right: 0.0,
-                top: 20.0,
-                child: CircleButton('X'),
-              ),
-              Positioned(
-                right: 0.0,
-                top: 40.0,
-                child: CircleButton('<'),
-              ),
-              Positioned(
-                right: 0.0,
-                top: 60.0,
-                child: CircleButton('>'),
-              ),
+              Text("No data"),
             ],
-          ),
-          SizedBox(height: 20.0,),
-          Text(widget.title,
-            style: TextStyle(
-              fontSize: 14.0,
-            ),
-          ),
-        ],
-      ),
+          )
+        );
+      } else {
+        var i = 0;
+        List<Widget> _tempList = [];
+        for (var child in widget.children) {
+          if (i % widget.rowCount == 0) {
+            this._tableRowChildren.add(
+              TableRow(
+                children: _tempList,
+              )
+            );
+            _tempList = [];
+          }
+          _tempList.add(child);
+          i++;
+        }
+        this._tableRowChildren.add(
+            TableRow(
+              children: _tempList,
+            )
+        );
+      }
+    }
+
+    @override
+    void initState() {
+      super.initState();
+      buildTableRowChildren();
+    }
+
+    return Table(
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      children: this._tableRowChildren,
     );
   }
 }

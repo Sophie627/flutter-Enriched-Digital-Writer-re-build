@@ -6,7 +6,7 @@
     Class: TemplatePreview
     Description:  Template Preview Container
                   title(String) - Title of template
-                  imagePath(List<String>) - Template's images path array
+                  imagePath(String) - Template's images path
                   margin(double)  - Margin of template container
    */
 import 'package:flutter/cupertino.dart';
@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 
 class TemplatePreview extends StatefulWidget {
   final String title;
-  final List<String> imagePath;
+  final String imagePath;
   final double margin;
 
   TemplatePreview({
@@ -45,7 +45,7 @@ class _TemplatePreviewState extends State<TemplatePreview> {
                     color: Colors.grey,
                   ),
                 ),
-                child: Image.asset(widget.imagePath[0],
+                child: Image.asset(widget.imagePath,
                   fit: BoxFit.fitWidth,
                 ),
               ),

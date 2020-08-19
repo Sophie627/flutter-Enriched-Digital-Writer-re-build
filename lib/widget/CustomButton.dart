@@ -23,11 +23,13 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
 
-    return FlatButton(
+    return OutlineButton(
+      borderSide: BorderSide(
+        color: Colors.grey,
+      ),
       color: Theme.of(context).primaryColor,
       textColor: Colors.black,
       hoverColor: Colors.white,
-      disabledColor: Colors.grey,
       disabledTextColor: Colors.black,
       padding: EdgeInsets.all(8.0),
       splashColor: Colors.grey,
