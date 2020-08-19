@@ -1,4 +1,5 @@
 import 'package:enriched_digital_writer/widget/HeadingText.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -18,37 +19,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          height: 40.0,
-            child: Image.asset('images/logo.png',
-            fit: BoxFit.fitHeight,
-          ),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
-        shadowColor: Theme.of(context).primaryColor,
-        actions: [
-          CustomButton('Close', () {
-            SystemNavigator.pop();
-          }),
-          SizedBox(
-            width: 30.0,
-          ),
-          CustomButton('My Account', () {}),
-          SizedBox(
-            width: 30.0,
-          ),
-          CustomButton('Forum', () {}),
-          SizedBox(
-            width: 30.0,
-          ),
-        ],
-      ),
       body: Center(
         child: Container(
           color: Theme.of(context).primaryColor,
           child: Column(
             children: [
+              Container(
+                height: 100.0,
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 40.0),
+                      height: 60.0,
+                        child: Image.asset('images/logo.png',
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(),
+                    ),
+                    CustomButton('Close', () {
+                      SystemNavigator.pop();
+                    }),
+                    SizedBox(
+                      width: 30.0,
+                    ),
+                    CustomButton('My Account', () {}),
+                    SizedBox(
+                      width: 30.0,
+                    ),
+                    CustomButton('Forum', () {}),
+                    SizedBox(
+                      width: 30.0,
+                    ),
+                  ],
+                ),
+              ),
               Expanded(
                 child: Row(
                   children: [
