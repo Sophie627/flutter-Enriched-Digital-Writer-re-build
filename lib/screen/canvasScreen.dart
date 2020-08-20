@@ -9,8 +9,10 @@ class CanvasScreen extends StatefulWidget {
 }
 
 class _CanvasScreenState extends State<CanvasScreen> {
-  final ScrollController _NewTemplateScrollController = ScrollController();
-  final ScrollController _CompletedTemplateScrollController = ScrollController();
+  final ScrollController _CanvasHorizontalScrollController = ScrollController();
+  final ScrollController _CanvasVerticalScrollController = ScrollController();
+  final ScrollController _TemplateScrollController = ScrollController();
+  final ScrollController _FrameScrollController = ScrollController();
 
   final Color _borderColor = Colors.grey;
 
@@ -72,7 +74,10 @@ class _CanvasScreenState extends State<CanvasScreen> {
                     ResizebleWidget(
                       type: 'left',
                       child: Scrollbar(
+                        isAlwaysShown: true,
+                        controller: _TemplateScrollController,
                         child: SingleChildScrollView(
+                          controller: _TemplateScrollController,
                           child: Container(
                             margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                             color: Colors.white,
@@ -95,10 +100,16 @@ class _CanvasScreenState extends State<CanvasScreen> {
                     ),
                     Expanded(
                       child: Scrollbar(
+                        isAlwaysShown: true,
+                        controller: _CanvasHorizontalScrollController,
                         child: SingleChildScrollView(
+                          controller: _CanvasHorizontalScrollController,
                           scrollDirection: Axis.horizontal,
                           child: Scrollbar(
+                            isAlwaysShown: true,
+                            controller: _CanvasVerticalScrollController,
                             child: SingleChildScrollView(
+                              controller: _CanvasVerticalScrollController,
                               scrollDirection: Axis.vertical,
                               child: Container(
                                 decoration: BoxDecoration(
@@ -126,7 +137,10 @@ class _CanvasScreenState extends State<CanvasScreen> {
                     ResizebleWidget(
                       type: 'right',
                       child: Scrollbar(
+                        isAlwaysShown: true,
+                        controller: _FrameScrollController,
                         child: SingleChildScrollView(
+                          controller: _FrameScrollController,
                           child: Container(
                             color: Colors.white,
                             margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
