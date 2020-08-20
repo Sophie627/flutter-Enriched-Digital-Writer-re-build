@@ -104,14 +104,8 @@ class _BookBuilderScreenState extends State<BookBuilderScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           BookBuilderButton("Save to PDF", () {}),
-                          BookBuilderButton("Create Flip Book", () async {
-                            const url =
-                                'https://sophie627.github.io/flippage';
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
+                          BookBuilderButton("Create Flip Book", () {
+                            Navigator.of(context).pushNamed("/flippage");
                           }),
                           BookBuilderButton("Back to Dashboard", () {
                             Navigator.of(context).pushNamed("/dashboard");

@@ -1,8 +1,8 @@
 import 'package:enriched_digital_writer/screen/bookbuilderScreen.dart';
 import 'package:enriched_digital_writer/screen/canvasScreen.dart';
 import 'package:enriched_digital_writer/screen/dashboardScreen.dart';
+import 'package:enriched_digital_writer/screen/flippageScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:page_turn/page_turn.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/dashboard': (BuildContext context) => new DashboardScreen(),
         '/canvas': (BuildContext context) => new CanvasScreen(),
         '/bookbuilder': (BuildContext context) => new BookBuilderScreen(),
+        '/flippage': (BuildContext context) => new FlipPageScreen(),
       },
       home: DashboardScreen(),
     );
