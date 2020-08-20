@@ -38,8 +38,8 @@ class _FlipPageScreenState extends State<FlipPageScreen> {
         }
 
         #flipbook{
-            width:60% !important;
-            height:80% !important;
+            width:70% !important;
+            height:40% !important;
         }
 
         #flipbook .page{
@@ -102,7 +102,7 @@ class _FlipPageScreenState extends State<FlipPageScreen> {
     <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
 </head>
 <body>
-    <div id="flipbook" style="margin:50px auto;">
+    <div id="flipbook" style="margin:200px auto;">
         <div class="hard">Cover</div>
         <div class="hard"></div>
         <div class="page"><img style="width:100%;height:100%;" src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/01.jpg" draggable="false" alt="" /></div>
@@ -185,8 +185,8 @@ this.data().f;if(a){if(-1==u.all.indexOf(a))throw t("Corner "+a+" is not permitt
 animatef:function(a){var b=this.data();b.effect&&b.effect.stop();if(a){a.to.length||(a.to=[a.to]);a.from.length||(a.from=[a.from]);for(var c=[],d=a.to.length,e=!0,f=this,h=(new Date).getTime(),l=function(){if(b.effect&&e){for(var g=[],k=Math.min(a.duration,(new Date).getTime()-h),m=0;m<d;m++)g.push(b.effect.easing(1,k,a.from[m],c[m],a.duration));a.frame(1==d?g[0]:g);k==a.duration?(delete b.effect,f.data(b),a.complete&&a.complete()):window.requestAnimationFrame(l)}},m=0;m<d;m++)c.push(a.to[m]-a.from[m]);
 b.effect=g.extend({stop:function(){e=!1},easing:function(a,b,c,d,e){return d*Math.sqrt(1-(b=b/e-1)*b)+c}},a);this.data(b);l()}else delete b.effect}});g.isTouch=x;g.mouseEvents=w;g.findPos=B})(jQuery);
         \$("#flipbook").turn({
-            width: 1200,
-            height: 900,
+            width: 900,
+            height: 1200,
         });
     </script>
 </body>
