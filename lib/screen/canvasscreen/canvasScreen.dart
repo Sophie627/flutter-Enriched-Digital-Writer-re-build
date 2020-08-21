@@ -101,15 +101,9 @@ class _CanvasScreenState extends State<CanvasScreen> {
                     ),
                     Expanded(
                       child: Scrollbar(
-                        isAlwaysShown: true,
-                        controller: _CanvasHorizontalScrollController,
-                        child: SingleChildScrollView(
-                          controller: _CanvasHorizontalScrollController,
-                          scrollDirection: Axis.horizontal,
-                          child: Scrollbar(
-                            isAlwaysShown: true,
-                            controller: _CanvasVerticalScrollController,
-                            child: SingleChildScrollView(
+                        child: ListView(
+                          children: [
+                            SingleChildScrollView(
                               controller: _CanvasVerticalScrollController,
                               scrollDirection: Axis.vertical,
                               child: Container(
@@ -130,7 +124,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                 child: TextEditor(),
                               ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
                     ),

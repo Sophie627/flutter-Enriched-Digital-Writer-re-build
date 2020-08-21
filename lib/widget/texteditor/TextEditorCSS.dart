@@ -38,9 +38,7 @@ abbr {
 }
 
 .centered {
-	max-width: 960px;
 	margin: 0 auto;
-	padding: 0 var(--ck-sample-base-spacing);
 }
 
 /* --------- HEADER ---------------------------------------------------------------------------- */
@@ -217,7 +215,6 @@ main .document-editor {
 	border-bottom-color: #cdd0d2;
 	border-right-color: #cdd0d2;
 	border-radius: 2px;
-	max-height: 700px;
 	display: flex;
 	flex-flow: column nowrap;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.1);
