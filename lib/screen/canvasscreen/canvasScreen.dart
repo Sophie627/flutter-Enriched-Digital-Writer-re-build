@@ -1,4 +1,5 @@
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
+import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
 
 class CanvasScreen extends StatefulWidget {
@@ -125,9 +126,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                 ),
                                 margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
                                 height: MediaQuery.of(context).size.height - 56.0,
-                                child: Image.asset("images/template.png",
-                                  fit: BoxFit.fitHeight,
-                                ),
+                                width: 600.0,
+                                child: TextEditor(),
                               ),
                             ),
                           ),

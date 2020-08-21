@@ -1,7 +1,7 @@
 import 'package:enriched_digital_writer/screen/bookbuilderScreen.dart';
-import 'package:enriched_digital_writer/screen/canvasScreen.dart';
+import 'package:enriched_digital_writer/screen/canvasscreen/canvasScreen.dart';
 import 'package:enriched_digital_writer/screen/dashboardScreen.dart';
-import 'package:enriched_digital_writer/screen/flippageScreen.dart';
+import 'package:enriched_digital_writer/screen/filppagescreen/flippageScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
