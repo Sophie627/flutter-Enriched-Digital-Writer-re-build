@@ -2,6 +2,7 @@ import 'dart:html';
 import 'dart:js';
 
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
+import 'package:enriched_digital_writer/widget/texteditor/TestTextEditor.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class TestCanvasScreen extends StatefulWidget {
 }
 
 class _TestCanvasScreenState extends State<TestCanvasScreen> {
-  final ScrollController _CanvasHorizontalScrollController = ScrollController();
+//  final ScrollController _CanvasHorizontalScrollController = ScrollController();
   final ScrollController _CanvasVerticalScrollController = ScrollController();
   final ScrollController _TemplateScrollController = ScrollController();
   final ScrollController _FrameScrollController = ScrollController();
@@ -126,7 +127,7 @@ class _TestCanvasScreenState extends State<TestCanvasScreen> {
                                 margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
                                 height: MediaQuery.of(context).size.height - 56.0,
                                 width: 600.0,
-                                child: TextEditor(),
+                                child: TestTextEditor(),
                               ),
                             ),
                           ],

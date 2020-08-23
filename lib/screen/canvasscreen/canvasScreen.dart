@@ -4,6 +4,7 @@ import 'dart:js';
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:html/parser.dart' show parse;
 //import 'package:html/dom.dart';
 
@@ -15,12 +16,28 @@ class CanvasScreen extends StatefulWidget {
 }
 
 class _CanvasScreenState extends State<CanvasScreen> {
-  final ScrollController _CanvasHorizontalScrollController = ScrollController();
+//  final ScrollController _CanvasHorizontalScrollController = ScrollController();
   final ScrollController _CanvasVerticalScrollController = ScrollController();
   final ScrollController _TemplateScrollController = ScrollController();
   final ScrollController _FrameScrollController = ScrollController();
 
-  final Color _borderColor = Colors.grey;
+  Color _editorBackgroundColor = Colors.white;
+
+  /*
+    void changeEditorBackgroundColor(Color color)
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time:  Aug 23 2020 10:33 PM
+
+    Function: changeEditorBackgroundColor
+    Description: Change backgroundcolor of editor
+
+    Parameter:  color(Color)  - Background of editor
+   */
+  void changeEditorBackgroundColor(Color color) {
+    setState(() {
+      _editorBackgroundColor = color;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +84,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           CanvasButton('Fonts', () {}),
                           CanvasButton('Zoom', () {}),
                           CanvasButton('Un Freeze', () {}),
-                          CanvasButton('Page Color', () {}),
+//                          CanvasButton('Page Color', () {}),
+                          ColorPickerButton('Page Color', changeEditorBackgroundColor, _editorBackgroundColor, context),
                           CanvasButton('Help', () {}),
                         ],
                       ),
@@ -128,7 +146,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                 margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
                                 height: MediaQuery.of(context).size.height - 56.0,
                                 width: 600.0,
-                                child: TextEditor(),
+                                child: TextEditor(backgroundColor: _editorBackgroundColor,),
                               ),
                             ),
                           ],
@@ -240,9 +258,11 @@ class _CanvasScreenState extends State<CanvasScreen> {
   }
 
   /*
-    Widget CanvasButton(String txt)
+    Widget CanvasButton(String txt, Function func)
     Author: Sophie(bolesalavb@gmail.com)
     Created Date & Time:  Aug 17 2020 7:20 AM
+    Updated by Sophie at Aug 23 2020 10:24 PM
+      Description:  Added function as parameter
 
     Widget: CanvasButton
     Parameters: txt(String) - Text in button
@@ -267,6 +287,70 @@ class _CanvasScreenState extends State<CanvasScreen> {
             padding: EdgeInsets.all(8.0),
             splashColor: Colors.grey,
             onPressed: func,
+            child: Text(txt,
+              style: TextStyle(fontSize: 16.0),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /*
+    Widget ColorPickerButton(String txt, void onChangeColor, Color btnColor, BuildContext context)
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time:  Aug 23 2020 10:36 PM
+
+    Widget: ColorPickerButton
+    Parameters: txt(String) - Text in button
+                onChangeColor(Function)  -  Function for changing color
+                btnColor(Color) - Color of button
+    Return: OutlineButton
+   */
+  Widget ColorPickerButton(String txt, Function onChangeColor, Color btnColor, BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(width: 5.0,),
+        ButtonTheme(
+          minWidth: 66.0,
+          child: OutlineButton(
+            borderSide: BorderSide(
+              color: Colors.grey,
+              width: 5.0,
+            ),
+            color: btnColor,
+            textColor: Colors.black,
+            hoverColor: Colors.white,
+            disabledTextColor: Colors.black,
+            padding: EdgeInsets.all(8.0),
+            splashColor: Colors.grey,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    titlePadding: const EdgeInsets.all(0.0),
+                    contentPadding: const EdgeInsets.all(0.0),
+                    content: SingleChildScrollView(
+                      child: ColorPicker(
+                        pickerColor: btnColor,
+                        onColorChanged: onChangeColor,
+                        colorPickerWidth: 300.0,
+                        pickerAreaHeightPercent: 0.7,
+                        enableAlpha: true,
+                        displayThumbColor: true,
+                        showLabel: true,
+                        paletteType: PaletteType.hsv,
+                        pickerAreaBorderRadius: const BorderRadius.only(
+                          topLeft: const Radius.circular(2.0),
+                          topRight: const Radius.circular(2.0),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
             child: Text(txt,
               style: TextStyle(fontSize: 16.0),
             ),
