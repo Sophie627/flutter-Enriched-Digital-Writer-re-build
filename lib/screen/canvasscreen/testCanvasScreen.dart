@@ -4,17 +4,15 @@ import 'dart:js';
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
-import 'package:html/parser.dart' show parse;
-//import 'package:html/dom.dart';
 
-class CanvasScreen extends StatefulWidget {
-  CanvasScreen({Key key}) : super(key: key);
+class TestCanvasScreen extends StatefulWidget {
+  TestCanvasScreen({Key key}) : super(key: key);
 
   @override
-  _CanvasScreenState createState() => _CanvasScreenState();
+  _TestCanvasScreenState createState() => _TestCanvasScreenState();
 }
 
-class _CanvasScreenState extends State<CanvasScreen> {
+class _TestCanvasScreenState extends State<TestCanvasScreen> {
   final ScrollController _CanvasHorizontalScrollController = ScrollController();
   final ScrollController _CanvasVerticalScrollController = ScrollController();
   final ScrollController _TemplateScrollController = ScrollController();

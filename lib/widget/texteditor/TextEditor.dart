@@ -17,8 +17,10 @@ class _TextEditorState extends State<TextEditor> {
     super.initState();
 
     _element = html.IFrameElement()
-      ..style.border = 'none'
-      ..src = 'assets/web_elements/ckeditor5-build-decoupled-document/index.html';
+      ..contentEditable = 'true'
+      ..style.border = '1px solid grey'
+      ..src =
+          'assets/web_elements/ckeditor5-build-decoupled-document/index.html';
 
     // ignore:undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
@@ -29,12 +31,6 @@ class _TextEditorState extends State<TextEditor> {
 
   @override
   Widget build(BuildContext context) {
-
-    HtmlElementView _html = HtmlElementView(viewType: 'text-editor');
-
-    print("ok");
-    print(_html);
-
     return Scaffold(
       body: Center(
         child: Container(
