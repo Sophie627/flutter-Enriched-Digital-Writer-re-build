@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Enriched Digital Writer',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        primaryColor: Colors.grey[300],
+        primaryColor: Color.fromRGBO(232, 232, 232, 1.0),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: <String, WidgetBuilder>{

@@ -2,6 +2,7 @@ import 'dart:html';
 import 'dart:js';
 
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
+import 'package:enriched_digital_writer/widget/WebDraggableScrollbar.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -153,10 +154,15 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         ),
                       ),
                     ),
-                    ResizebleWidget(
-                      type: 'right',
-                      child: Scrollbar(
-                        isAlwaysShown: true,
+                    Container(
+                      width: 200.0,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      child: WebDraggableScrollbar(
                         controller: _FrameScrollController,
                         child: SingleChildScrollView(
                           controller: _FrameScrollController,
@@ -177,6 +183,28 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           ),
                         ),
                       ),
+//                      child: Scrollbar(
+//                        isAlwaysShown: true,
+//                        controller: _FrameScrollController,
+//                        child: SingleChildScrollView(
+//                          controller: _FrameScrollController,
+//                          child: Container(
+//                            color: Colors.white,
+//                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+//                            child: Column(
+//                              children: [
+//                                FrameImage("images/canvas_image.png"),
+//                                FrameImage("images/canvas_image.png"),
+//                                FrameImage("images/canvas_image.png"),
+//                                FrameImage("images/canvas_image.png"),
+//                                FrameImage("images/canvas_image.png"),
+//                                FrameImage("images/canvas_image.png"),
+//                                FrameImage("images/canvas_image.png"),
+//                              ],
+//                            ),
+//                          ),
+//                        ),
+//                      ),
                     ),
                     SizedBox(width: 20.0,),
                   ],
