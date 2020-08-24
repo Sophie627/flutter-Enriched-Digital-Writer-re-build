@@ -7,6 +7,7 @@ class WebDraggableScrollbar extends StatefulWidget {
   final Color scrollbarBorderColor;
   final Color scrollbarBackgroundColor;
   final Color scrollbarColor;
+  final String scrollPosition;
 
   WebDraggableScrollbar({
       this.heightScrollThumb = 40.0,
@@ -15,6 +16,7 @@ class WebDraggableScrollbar extends StatefulWidget {
       this.scrollbarBorderColor = Colors.grey,
       this.scrollbarBackgroundColor = Colors.white,
       this.scrollbarColor = Colors.black,
+      this.scrollPosition = 'right',
   });
 
   @override
@@ -22,6 +24,8 @@ class WebDraggableScrollbar extends StatefulWidget {
 }
 
 class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
+
+  final double scrollbarWidth = 20.0;
   //this counts offset for scroll thumb in Vertical axis
   double _barOffset;
   //this counts offset for list in Vertical axis
@@ -93,14 +97,15 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
         },
         child: widget.child,
       ),
-      Container(
+      widget.scrollPosition == 'left'
+      ? Container(
         decoration: BoxDecoration(
           color: widget.scrollbarBackgroundColor,
           border: Border.all(
             color: widget.scrollbarBorderColor,
           ),
         ),
-        width: 20.0,
+        width: scrollbarWidth,
         height: double.infinity,
         child: GestureDetector(
           onVerticalDragUpdate: _onVerticalDragUpdate,
@@ -109,6 +114,26 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
               margin: EdgeInsets.only(top: _barOffset),
               child: _buildScrollThumb()),
         ),
+      )
+      : Align(
+          alignment: Alignment.centerRight,
+          child: Container(
+            decoration: BoxDecoration(
+              color: widget.scrollbarBackgroundColor,
+              border: Border.all(
+                color: widget.scrollbarBorderColor,
+              ),
+            ),
+            width: scrollbarWidth,
+            height: double.infinity,
+            child: GestureDetector(
+              onVerticalDragUpdate: _onVerticalDragUpdate,
+              child: Container(
+                  alignment: Alignment.topCenter,
+                  margin: EdgeInsets.only(top: _barOffset),
+                  child: _buildScrollThumb()),
+            ),
+          ),
       ),
     ]);
   }

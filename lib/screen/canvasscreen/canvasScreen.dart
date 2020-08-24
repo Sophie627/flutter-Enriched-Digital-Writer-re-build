@@ -1,13 +1,8 @@
-import 'dart:html';
-import 'dart:js';
-
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:enriched_digital_writer/widget/WebDraggableScrollbar.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:html/parser.dart' show parse;
-//import 'package:html/dom.dart';
 
 class CanvasScreen extends StatefulWidget {
   CanvasScreen({Key key}) : super(key: key);
@@ -23,6 +18,9 @@ class _CanvasScreenState extends State<CanvasScreen> {
   final ScrollController _FrameScrollController = ScrollController();
 
   Color _editorBackgroundColor = Colors.white;
+  Color _scrollbarBorderColor = Color.fromRGBO(208, 208, 208, 1.0);
+  Color _scrollbarColor = Color.fromRGBO(208, 208, 208, 1.0);
+  Color _scrollbarBackgroundColor = Color.fromRGBO(232, 232, 232, 1.0);
 
   /*
     void changeEditorBackgroundColor(Color color)
@@ -98,15 +96,24 @@ class _CanvasScreenState extends State<CanvasScreen> {
                 child: Row(
                   children: [
                     SizedBox(width: 20.0,),
-                    ResizebleWidget(
-                      type: 'left',
-                      child: Scrollbar(
-                        isAlwaysShown: true,
+                    Container(
+                      width: 220.0,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      child: WebDraggableScrollbar(
+                        heightScrollThumb: 100.0,
+                        scrollbarBackgroundColor: _scrollbarBackgroundColor,
+                        scrollbarBorderColor: _scrollbarBorderColor,
+                        scrollbarColor: _scrollbarColor,
                         controller: _TemplateScrollController,
                         child: SingleChildScrollView(
                           controller: _TemplateScrollController,
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 40.0, 20.0),
                             color: Colors.white,
                             child: Column(
                               children: [
@@ -155,7 +162,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                       ),
                     ),
                     Container(
-                      width: 200.0,
+                      width: 220.0,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border.all(
@@ -163,12 +170,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         ),
                       ),
                       child: WebDraggableScrollbar(
+                        scrollPosition: 'left',
+                        heightScrollThumb: 100.0,
+                        scrollbarBackgroundColor: _scrollbarBackgroundColor,
+                        scrollbarBorderColor: _scrollbarBorderColor,
+                        scrollbarColor: _scrollbarColor,
                         controller: _FrameScrollController,
                         child: SingleChildScrollView(
                           controller: _FrameScrollController,
                           child: Container(
                             color: Colors.white,
-                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 40.0, 0.0),
                             child: Column(
                               children: [
                                 FrameImage("images/canvas_image.png"),
@@ -183,28 +195,6 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           ),
                         ),
                       ),
-//                      child: Scrollbar(
-//                        isAlwaysShown: true,
-//                        controller: _FrameScrollController,
-//                        child: SingleChildScrollView(
-//                          controller: _FrameScrollController,
-//                          child: Container(
-//                            color: Colors.white,
-//                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-//                            child: Column(
-//                              children: [
-//                                FrameImage("images/canvas_image.png"),
-//                                FrameImage("images/canvas_image.png"),
-//                                FrameImage("images/canvas_image.png"),
-//                                FrameImage("images/canvas_image.png"),
-//                                FrameImage("images/canvas_image.png"),
-//                                FrameImage("images/canvas_image.png"),
-//                                FrameImage("images/canvas_image.png"),
-//                              ],
-//                            ),
-//                          ),
-//                        ),
-//                      ),
                     ),
                     SizedBox(width: 20.0,),
                   ],
