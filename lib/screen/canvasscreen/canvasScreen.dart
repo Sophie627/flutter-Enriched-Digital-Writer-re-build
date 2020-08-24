@@ -132,7 +132,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         ),
                       ),
                     ),
-                    Expanded(
+                    Container(
+                      width: MediaQuery.of(context).size.width - 480.0,
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -146,8 +147,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           ],
                         ),
                         margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
-                        height: MediaQuery.of(context).size.height - 56.0,
-                        child: TextEditor(backgroundColor: _editorBackgroundColor,),
+                        height: MediaQuery.of(context).size.height - 120.0,
+                        child: WebDraggableScrollbar(
+                          scrollbarBackgroundColor: _scrollbarBackgroundColor,
+                          scrollbarBorderColor: _scrollbarBorderColor,
+                          scrollbarColor: _scrollbarColor,
+                          controller: _CanvasVerticalScrollController,
+                          child: SingleChildScrollView(
+                            controller: _CanvasVerticalScrollController,
+                            child: TextEditor(backgroundColor: _editorBackgroundColor,),
+                          ),
+                        ),
                       ),
                     ),
                     Container(

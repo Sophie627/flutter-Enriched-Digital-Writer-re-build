@@ -33,15 +33,14 @@ class _TextEditorState extends State<TextEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+
+    return Center(
         child: Container(
           color: widget.backgroundColor,
-          height: double.infinity,
-          width: double.infinity,
+          height: 2000,
+          width: 2000,
 //          child: HtmlElementView(viewType: 'text-editor'),
         ),
-      ),
     );
   }
 }

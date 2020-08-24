@@ -150,6 +150,29 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
         },
         child: new Stack(children: <Widget>[
           widget.child,
+//          widget.scrollPosition == 'canvas'
+//          ? Positioned(
+//              right: 10.0,
+//              top: 0.0,
+//              child: Container(
+//                decoration: BoxDecoration(
+//                  color: widget.scrollbarBackgroundColor,
+//                  border: Border.all(
+//                    color: widget.scrollbarBorderColor,
+//                  ),
+//                ),
+//                width: 20.0,
+//                height: double.infinity,
+//                child: GestureDetector(
+//                  onVerticalDragUpdate: _onVerticalDragUpdate,
+//                  child: Container(
+//                      alignment: Alignment.topCenter,
+//                      margin: EdgeInsets.only(top: _barOffset),
+//                      child: _buildScrollThumb()),
+//                ),
+//              ),
+//            )
+//          :
           Align(
             alignment: widget.scrollPosition == 'right' ? Alignment.centerRight : Alignment.centerLeft,
             child: Container(
@@ -170,7 +193,9 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
               ),
             ),
           ),
-        ]));
+        ]
+      )
+    );
   }
 
   Widget _buildScrollThumb() {
