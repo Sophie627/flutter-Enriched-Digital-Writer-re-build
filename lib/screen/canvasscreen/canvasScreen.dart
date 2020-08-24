@@ -133,32 +133,21 @@ class _CanvasScreenState extends State<CanvasScreen> {
                       ),
                     ),
                     Expanded(
-                      child: Scrollbar(
-                        child: ListView(
-                          children: [
-                            SingleChildScrollView(
-                              controller: _CanvasVerticalScrollController,
-                              scrollDirection: Axis.vertical,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: Offset(0, 3), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-                                margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
-                                height: MediaQuery.of(context).size.height - 56.0,
-                                width: 600.0,
-                                child: TextEditor(backgroundColor: _editorBackgroundColor,),
-                              ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: Offset(0, 3), // changes position of shadow
                             ),
                           ],
                         ),
+                        margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
+                        height: MediaQuery.of(context).size.height - 56.0,
+                        child: TextEditor(backgroundColor: _editorBackgroundColor,),
                       ),
                     ),
                     Container(
@@ -180,7 +169,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           controller: _FrameScrollController,
                           child: Container(
                             color: Colors.white,
-                            margin: EdgeInsets.fromLTRB(20.0, 20.0, 40.0, 0.0),
+                            margin: EdgeInsets.fromLTRB(40.0, 20.0, 20.0, 0.0),
                             child: Column(
                               children: [
                                 FrameImage("images/canvas_image.png"),

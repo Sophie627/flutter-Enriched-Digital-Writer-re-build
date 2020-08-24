@@ -37,8 +37,8 @@ class _TextEditorState extends State<TextEditor> {
       body: Center(
         child: Container(
           color: widget.backgroundColor,
-//          height: double.infinity,
-//          width: double.infinity,
+          height: double.infinity,
+          width: double.infinity,
 //          child: HtmlElementView(viewType: 'text-editor'),
         ),
       ),

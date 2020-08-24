@@ -10,7 +10,7 @@ class WebDraggableScrollbar extends StatefulWidget {
   final String scrollPosition;
 
   WebDraggableScrollbar({
-      this.heightScrollThumb = 40.0,
+      this.heightScrollThumb = 100.0,
       this.child,
       this.controller,
       this.scrollbarBorderColor = Colors.grey,
@@ -30,11 +30,15 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
   double _barOffset;
   //this counts offset for list in Vertical axis
   double _viewOffset;
+  //variable to track when scrollbar is dragged
+  bool _isDragInProcess;
+
   @override
   void initState() {
     super.initState();
     _barOffset = 0.0;
     _viewOffset = 0.0;
+    _isDragInProcess = false;
   }
 
   //if list takes 300.0 pixels of height on screen and scrollthumb height is 40.0
@@ -49,14 +53,32 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
   //this is usually 0.0
   double get viewMinScrollExtent => widget.controller.position.minScrollExtent;
 
-  double get scrollbarHeight => barMaxScrollExtent * barMaxScrollExtent / viewMaxScrollExtent;
-
   double getScrollViewDelta(
       double barDelta,
       double barMaxScrollExtent,
       double viewMaxScrollExtent,
-      ) { //propotion
+      ) {//propotion
     return barDelta * viewMaxScrollExtent / barMaxScrollExtent;
+  }
+
+  double getBarDelta(
+      double scrollViewDelta,
+      double barMaxScrollExtent,
+      double viewMaxScrollExtent,
+      ) {//propotion
+    return scrollViewDelta * barMaxScrollExtent / viewMaxScrollExtent;
+  }
+
+  void _onVerticalDragStart(DragStartDetails details) {
+    setState(() {
+      _isDragInProcess = true;
+    });
+  }
+
+  void _onVerticalDragEnd(DragEndDetails details) {
+    setState(() {
+      _isDragInProcess = false;
+    });
   }
 
   void _onVerticalDragUpdate(DragUpdateDetails details) {
@@ -84,58 +106,71 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
     });
   }
 
+  //this function process events when scroll controller changes it's position
+  //by scrollController.jumpTo or scrollController.animateTo functions.
+  //It can be when user scrolls, drags scrollbar (see line 139)
+  //or any other manipulation with scrollController outside this widget
+  changePosition(ScrollNotification notification) {
+    //if notification was fired when user drags we don't need to update scrollThumb position
+    if (_isDragInProcess) {
+      return;
+    }
+
+    setState(() {
+      if (notification is ScrollUpdateNotification) {
+        _barOffset += getBarDelta(
+          notification.scrollDelta,
+          barMaxScrollExtent,
+          viewMaxScrollExtent,
+        );
+
+        if (_barOffset < barMinScrollExtent) {
+          _barOffset = barMinScrollExtent;
+        }
+        if (_barOffset > barMaxScrollExtent) {
+          _barOffset = barMaxScrollExtent;
+        }
+
+        _viewOffset += notification.scrollDelta;
+        if (_viewOffset < widget.controller.position.minScrollExtent) {
+          _viewOffset = widget.controller.position.minScrollExtent;
+        }
+        if (_viewOffset > viewMaxScrollExtent) {
+          _viewOffset = viewMaxScrollExtent;
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return new Stack(children: <Widget>[
-      NotificationListener(
-        onNotification: (t) {
-          if (t is ScrollUpdateNotification) {
-            setState(() {
-              _barOffset = widget.controller.position.pixels / viewMaxScrollExtent * barMaxScrollExtent;
-            });
-          }
+    return NotificationListener<ScrollNotification>(
+        onNotification: (ScrollNotification notification) {
+          changePosition(notification);
         },
-        child: widget.child,
-      ),
-      widget.scrollPosition == 'left'
-      ? Container(
-        decoration: BoxDecoration(
-          color: widget.scrollbarBackgroundColor,
-          border: Border.all(
-            color: widget.scrollbarBorderColor,
-          ),
-        ),
-        width: scrollbarWidth,
-        height: double.infinity,
-        child: GestureDetector(
-          onVerticalDragUpdate: _onVerticalDragUpdate,
-          child: Container(
-              alignment: Alignment.topCenter,
-              margin: EdgeInsets.only(top: _barOffset),
-              child: _buildScrollThumb()),
-        ),
-      )
-      : Align(
-          alignment: Alignment.centerRight,
-          child: Container(
-            decoration: BoxDecoration(
-              color: widget.scrollbarBackgroundColor,
-              border: Border.all(
-                color: widget.scrollbarBorderColor,
+        child: new Stack(children: <Widget>[
+          widget.child,
+          Align(
+            alignment: widget.scrollPosition == 'right' ? Alignment.centerRight : Alignment.centerLeft,
+            child: Container(
+              decoration: BoxDecoration(
+                color: widget.scrollbarBackgroundColor,
+                border: Border.all(
+                  color: widget.scrollbarBorderColor,
+                ),
+              ),
+              width: 20.0,
+              height: double.infinity,
+              child: GestureDetector(
+                onVerticalDragUpdate: _onVerticalDragUpdate,
+                child: Container(
+                    alignment: Alignment.topCenter,
+                    margin: EdgeInsets.only(top: _barOffset),
+                    child: _buildScrollThumb()),
               ),
             ),
-            width: scrollbarWidth,
-            height: double.infinity,
-            child: GestureDetector(
-              onVerticalDragUpdate: _onVerticalDragUpdate,
-              child: Container(
-                  alignment: Alignment.topCenter,
-                  margin: EdgeInsets.only(top: _barOffset),
-                  child: _buildScrollThumb()),
-            ),
           ),
-      ),
-    ]);
+        ]));
   }
 
   Widget _buildScrollThumb() {
