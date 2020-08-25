@@ -4,6 +4,7 @@ import 'package:enriched_digital_writer/widget/WebDraggableScrollbar.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'dart:convert';
 
 class CanvasScreen extends StatefulWidget {
   CanvasScreen({Key key}) : super(key: key);
@@ -23,11 +24,35 @@ class _CanvasScreenState extends State<CanvasScreen> {
   Color _scrollbarColor = Color.fromRGBO(208, 208, 208, 1.0);
   Color _scrollbarBackgroundColor = Color.fromRGBO(232, 232, 232, 1.0);
   Color _scrollbarHoverColor = Color.fromRGBO(127, 127, 127, 1.0);
+  
+  final List _editorState = [
+    {
+      "type": "page",
+      "backgroundColor": [255, 255, 255, 1.0],
+    },
+  ];
 
+  /*
+    Color getListToColor(List colorList)
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time: Aug 25 2020 11:43 PM
+
+    Function getListToColor
+    Description:  Convert List to Color
+    Parameter:  colorList(List) - RGBO List
+
+    return Color
+   */
+  Color getListToColor(List colorList) {
+    return Color.fromRGBO(colorList[0], colorList[1], colorList[2], colorList[3]);
+  }
+  
   /*
     void changeEditorBackgroundColor(Color color)
     Author: Sophie(bolesalavb@gmail.com)
     Created Date & Time:  Aug 23 2020 10:33 PM
+    Updated by Sophie on Aug 25 2020 11:50 PM
+      Descripion: Stored color as list
 
     Function: changeEditorBackgroundColor
     Description: Change backgroundcolor of editor
@@ -36,7 +61,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
    */
   void changeEditorBackgroundColor(Color color) {
     setState(() {
-      _editorBackgroundColor = color;
+      _editorState[0]['backgroundColor'] = [color.red, color.green, color.blue, color.opacity];
     });
   }
 
@@ -71,7 +96,9 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           CanvasButton('Open', () {
-                            print('Open');
+                            final String str = '{id:1, name: lorem ipsum, address: dolor set amet}';
+                            final jsonobj = json.decode(str);
+                            print(jsonobj);
                           }),
                           CanvasButton('Save', () {}),
                           CanvasButton('Print', () {}),
@@ -86,7 +113,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           CanvasButton('Fonts', () {}),
                           CanvasButton('Zoom', () {}),
                           CanvasButton('Un Freeze', () {}),
-                          ColorPickerButton('Page Color', changeEditorBackgroundColor, _editorBackgroundColor, context),
+                          ColorPickerButton('Page Color', changeEditorBackgroundColor, getListToColor(_editorState[0]['backgroundColor']), context),
                           CanvasButton('Help', () {}),
                         ],
                       )
@@ -97,7 +124,11 @@ class _CanvasScreenState extends State<CanvasScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               CanvasButton('Open', () {
-                                print('Open');
+                                final String str = '[{"id": 1, "name": "lorem ipsum", "address": "dolor set amet"}]';
+                                final jsonobj = json.decode(str);
+                                final jsonstr = json.encode(jsonobj);
+                                print(jsonstr);
+                                print(jsonobj[0]['id']);
                               }),
                               CanvasButton('Save', () {}),
                               CanvasButton('Print', () {}),
@@ -118,7 +149,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                               CanvasButton('Fonts', () {}),
                               CanvasButton('Zoom', () {}),
                               CanvasButton('Un Freeze', () {}),
-                              ColorPickerButton('Page Color', changeEditorBackgroundColor, _editorBackgroundColor, context),
+                              ColorPickerButton('Page Color', changeEditorBackgroundColor, getListToColor(_editorState[0]['backgroundColor']), context),
                               CanvasButton('Help', () {}),
                             ],
                           ),
@@ -184,7 +215,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           scrollbarHoverColor: _scrollbarHoverColor,
                           horizontalController: _CanvasHorizontalScrollController,
                           verticalController: _CanvasVerticalScrollController,
-                          child: TextEditor(backgroundColor: _editorBackgroundColor,),
+                          child: TextEditor(backgroundColor: getListToColor(_editorState[0]['backgroundColor']),),
                         ),
                       ),
                     ),
