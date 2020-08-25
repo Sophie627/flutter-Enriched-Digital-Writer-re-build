@@ -86,7 +86,6 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           CanvasButton('Fonts', () {}),
                           CanvasButton('Zoom', () {}),
                           CanvasButton('Un Freeze', () {}),
-//                          CanvasButton('Page Color', () {}),
                           ColorPickerButton('Page Color', changeEditorBackgroundColor, _editorBackgroundColor, context),
                           CanvasButton('Help', () {}),
                         ],
@@ -119,7 +118,6 @@ class _CanvasScreenState extends State<CanvasScreen> {
                               CanvasButton('Fonts', () {}),
                               CanvasButton('Zoom', () {}),
                               CanvasButton('Un Freeze', () {}),
-//                          CanvasButton('Page Color', () {}),
                               ColorPickerButton('Page Color', changeEditorBackgroundColor, _editorBackgroundColor, context),
                               CanvasButton('Help', () {}),
                             ],
@@ -134,14 +132,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                 child: Row(
                   children: [
                     SizedBox(width: 20.0,),
-                    Container(
-                      width: 220.0,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                      ),
+                    ResizableWidget(
                       child: WebDraggableScrollbar(
                         heightScrollThumb: 100.0,
                         scrollbarBackgroundColor: _scrollbarBackgroundColor,
@@ -171,8 +162,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width - 480.0,
+                    Expanded(
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -198,14 +188,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: 220.0,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                      ),
+                    ResizableWidget(
+                      type: 'right',
                       child: WebDraggableScrollbar(
                         scrollPosition: 'left',
                         heightScrollThumb: 100.0,

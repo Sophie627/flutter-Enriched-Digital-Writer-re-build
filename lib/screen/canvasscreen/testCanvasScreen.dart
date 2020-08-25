@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'dart:js';
 
+//import 'package:enriched_digital_writer/widget/.dart';
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TestTextEditor.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
@@ -78,7 +79,7 @@ class _TestCanvasScreenState extends State<TestCanvasScreen> {
                 child: Row(
                   children: [
                     SizedBox(width: 20.0,),
-                    ResizebleWidget(
+                    ResizableWidget(
                       type: 'left',
                       child: Scrollbar(
                         isAlwaysShown: true,
@@ -134,7 +135,7 @@ class _TestCanvasScreenState extends State<TestCanvasScreen> {
                         ),
                       ),
                     ),
-                    ResizebleWidget(
+                    ResizableWidget(
                       type: 'right',
                       child: Scrollbar(
                         isAlwaysShown: true,

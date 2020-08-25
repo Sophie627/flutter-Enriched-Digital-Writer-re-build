@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ResizebleWidget extends StatefulWidget {
-  ResizebleWidget({
+class ResizableWidget extends StatefulWidget {
+  ResizableWidget({
     this.child,
     this.color = Colors.white,
     this.type = 'left',
@@ -13,12 +13,12 @@ class ResizebleWidget extends StatefulWidget {
   final String type;
 
   @override
-  _ResizebleWidgetState createState() => _ResizebleWidgetState();
+  _ResizableWidgetState createState() => _ResizableWidgetState();
 }
 
-class _ResizebleWidgetState extends State<ResizebleWidget> {
+class _ResizableWidgetState extends State<ResizableWidget> {
   double height;
-  double width = 200.0;
+  double width = 220.0;
 
   void onDrag(double dx, double dy) {
     var newHeight = height + dy;
@@ -54,7 +54,7 @@ class _ResizebleWidgetState extends State<ResizebleWidget> {
               type: widget.type,
               onDrag: (dx, dy) {
                 var newWidth = width + dx;
-                if (newWidth < 500.0 && newWidth > 200.0) {
+                if (newWidth < 220.0 && newWidth > 20.0) {
                   setState(() {
                     width = newWidth > 0 ? newWidth : 0;
                   });
@@ -72,7 +72,7 @@ class _ResizebleWidgetState extends State<ResizebleWidget> {
               onDrag: (dx, dy) {
                 var newWidth = width -dx ;
 
-                if(newWidth < 500.0 && newWidth> 200.0) {
+                if(newWidth < 220.0 && newWidth> 20.0) {
                   setState(() {
                     width = newWidth > 0 ? newWidth : 0;
                   });
@@ -126,6 +126,7 @@ class _ManipulatingBallState extends State<ManipulatingBall> {
       onPanStart: _handleDrag,
       onPanUpdate: _handleUpdate,
       child: Container(
+        color: Color.fromRGBO(232, 232, 232, 1.0),
         height: MediaQuery.of(context).size.height - 56.0,
         child: Center(
           child: Image.asset("images/" + widget.type + ".png"),

@@ -204,18 +204,18 @@ class _BuildScrollThumbState extends State<BuildScrollThumb> {
   bool _isHover = false;
 
   void _onHover(PointerEvent details) {
-    print('hover');
+//    print('hover');
   }
 
   void _onEnter(PointerEvent details) {
-    print('enter');
+//    print('enter');
     setState(() {
       _isHover = true;
     });
   }
 
   void _onExit(PointerEvent details) {
-    print('exit');
+//    print('exit');
     setState(() {
       _isHover = false;
     });
