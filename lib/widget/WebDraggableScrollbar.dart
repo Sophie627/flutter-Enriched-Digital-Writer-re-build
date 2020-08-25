@@ -7,6 +7,7 @@ class WebDraggableScrollbar extends StatefulWidget {
   final Color scrollbarBorderColor;
   final Color scrollbarBackgroundColor;
   final Color scrollbarColor;
+  final Color scrollbarHoverColor;
   final String scrollPosition;
 
   WebDraggableScrollbar({
@@ -16,6 +17,7 @@ class WebDraggableScrollbar extends StatefulWidget {
       this.scrollbarBorderColor = Colors.grey,
       this.scrollbarBackgroundColor = Colors.white,
       this.scrollbarColor = Colors.black,
+      this.scrollbarHoverColor = Colors.black,
       this.scrollPosition = 'right',
   });
 
@@ -150,29 +152,6 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
         },
         child: new Stack(children: <Widget>[
           widget.child,
-//          widget.scrollPosition == 'canvas'
-//          ? Positioned(
-//              right: 10.0,
-//              top: 0.0,
-//              child: Container(
-//                decoration: BoxDecoration(
-//                  color: widget.scrollbarBackgroundColor,
-//                  border: Border.all(
-//                    color: widget.scrollbarBorderColor,
-//                  ),
-//                ),
-//                width: 20.0,
-//                height: double.infinity,
-//                child: GestureDetector(
-//                  onVerticalDragUpdate: _onVerticalDragUpdate,
-//                  child: Container(
-//                      alignment: Alignment.topCenter,
-//                      margin: EdgeInsets.only(top: _barOffset),
-//                      child: _buildScrollThumb()),
-//                ),
-//              ),
-//            )
-//          :
           Align(
             alignment: widget.scrollPosition == 'right' ? Alignment.centerRight : Alignment.centerLeft,
             child: Container(
@@ -186,10 +165,16 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
               height: double.infinity,
               child: GestureDetector(
                 onVerticalDragUpdate: _onVerticalDragUpdate,
+                onVerticalDragStart: _onVerticalDragStart,
+                onVerticalDragEnd: _onVerticalDragEnd,
                 child: Container(
                     alignment: Alignment.topCenter,
                     margin: EdgeInsets.only(top: _barOffset),
-                    child: _buildScrollThumb()),
+                    child: BuildScrollThumb(
+                      scrollbarColor: widget.scrollbarColor,
+                      heightScrollThumb: widget.heightScrollThumb,
+                      scrollbarHoverColor: widget.scrollbarHoverColor,
+                    )),
               ),
             ),
           ),
@@ -197,12 +182,56 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
       )
     );
   }
+}
 
-  Widget _buildScrollThumb() {
-    return new Container(
-      height: widget.heightScrollThumb,
-      width: 2.0,
-      color: widget.scrollbarColor,
+class BuildScrollThumb extends StatefulWidget {
+  final Color scrollbarColor;
+  final Color scrollbarHoverColor;
+  final double heightScrollThumb;
+
+  BuildScrollThumb({
+    this.scrollbarColor,
+    this.scrollbarHoverColor = Colors.black,
+    this.heightScrollThumb,
+  });
+
+  @override
+  _BuildScrollThumbState createState() => new _BuildScrollThumbState();
+}
+
+class _BuildScrollThumbState extends State<BuildScrollThumb> {
+
+  bool _isHover = false;
+
+  void _onHover(PointerEvent details) {
+    print('hover');
+  }
+
+  void _onEnter(PointerEvent details) {
+    print('enter');
+    setState(() {
+      _isHover = true;
+    });
+  }
+
+  void _onExit(PointerEvent details) {
+    print('exit');
+    setState(() {
+      _isHover = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onHover: _onHover,
+      onEnter: _onEnter,
+      onExit: _onExit,
+      child: Container(
+        height: widget.heightScrollThumb,
+        width: 10.0,
+        color: _isHover ? widget.scrollbarHoverColor : widget.scrollbarColor,
+      ),
     );
   }
 }

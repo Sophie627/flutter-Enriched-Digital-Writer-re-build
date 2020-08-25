@@ -1,4 +1,5 @@
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
+import 'package:enriched_digital_writer/widget/WebBidirectionScrollbar.dart';
 import 'package:enriched_digital_writer/widget/WebDraggableScrollbar.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class CanvasScreen extends StatefulWidget {
 }
 
 class _CanvasScreenState extends State<CanvasScreen> {
-//  final ScrollController _CanvasHorizontalScrollController = ScrollController();
+  final ScrollController _CanvasHorizontalScrollController = ScrollController();
   final ScrollController _CanvasVerticalScrollController = ScrollController();
   final ScrollController _TemplateScrollController = ScrollController();
   final ScrollController _FrameScrollController = ScrollController();
@@ -21,6 +22,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
   Color _scrollbarBorderColor = Color.fromRGBO(208, 208, 208, 1.0);
   Color _scrollbarColor = Color.fromRGBO(208, 208, 208, 1.0);
   Color _scrollbarBackgroundColor = Color.fromRGBO(232, 232, 232, 1.0);
+  Color _scrollbarHoverColor = Color.fromRGBO(127, 127, 127, 1.0);
 
   /*
     void changeEditorBackgroundColor(Color color)
@@ -109,6 +111,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         scrollbarBackgroundColor: _scrollbarBackgroundColor,
                         scrollbarBorderColor: _scrollbarBorderColor,
                         scrollbarColor: _scrollbarColor,
+                        scrollbarHoverColor: _scrollbarHoverColor,
                         controller: _TemplateScrollController,
                         child: SingleChildScrollView(
                           controller: _TemplateScrollController,
@@ -148,15 +151,14 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         ),
                         margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
                         height: MediaQuery.of(context).size.height - 120.0,
-                        child: WebDraggableScrollbar(
+                        child: WebBidirectionScrollbar(
                           scrollbarBackgroundColor: _scrollbarBackgroundColor,
                           scrollbarBorderColor: _scrollbarBorderColor,
                           scrollbarColor: _scrollbarColor,
-                          controller: _CanvasVerticalScrollController,
-                          child: SingleChildScrollView(
-                            controller: _CanvasVerticalScrollController,
-                            child: TextEditor(backgroundColor: _editorBackgroundColor,),
-                          ),
+                          scrollbarHoverColor: _scrollbarHoverColor,
+                          horizontalController: _CanvasHorizontalScrollController,
+                          verticalController: _CanvasVerticalScrollController,
+                          child: TextEditor(backgroundColor: _editorBackgroundColor,),
                         ),
                       ),
                     ),
@@ -174,6 +176,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         scrollbarBackgroundColor: _scrollbarBackgroundColor,
                         scrollbarBorderColor: _scrollbarBorderColor,
                         scrollbarColor: _scrollbarColor,
+                        scrollbarHoverColor: _scrollbarHoverColor,
                         controller: _FrameScrollController,
                         child: SingleChildScrollView(
                           controller: _FrameScrollController,
