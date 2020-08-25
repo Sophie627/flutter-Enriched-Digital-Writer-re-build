@@ -5,6 +5,7 @@ import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'dart:convert';
+import 'dart:html' as html;
 
 class CanvasScreen extends StatefulWidget {
   CanvasScreen({Key key}) : super(key: key);
@@ -31,6 +32,26 @@ class _CanvasScreenState extends State<CanvasScreen> {
       "backgroundColor": [255, 255, 255, 1.0],
     },
   ];
+
+  void downloadTmp() {
+    final jsonstr = json.encode(_editorState);
+    final bytes = utf8.encode(jsonstr);
+    final blob = html.Blob([bytes]);
+    final url = html.Url.createObjectUrlFromBlob(blob);
+    final anchor =
+    html.document.createElement('a') as html.AnchorElement
+      ..href = url
+      ..style.display = 'none'
+      ..download = 'Template Test.edw';
+    html.document.body.children.add(anchor);
+
+    // download
+    anchor.click();
+
+    // cleanup
+    html.document.body.children.remove(anchor);
+    html.Url.revokeObjectUrl(url);
+  }
 
   /*
     Color getListToColor(List colorList)
@@ -95,12 +116,12 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          CanvasButton('Open', () {
+                          CanvasButton('Upload', () {
                             final String str = '{id:1, name: lorem ipsum, address: dolor set amet}';
                             final jsonobj = json.decode(str);
                             print(jsonobj);
                           }),
-                          CanvasButton('Save', () {}),
+                          CanvasButton('Download', downloadTmp),
                           CanvasButton('Print', () {}),
                           CanvasButton('Delete', () {}),
                           CanvasButton('Copy', () {}),
@@ -123,14 +144,14 @@ class _CanvasScreenState extends State<CanvasScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              CanvasButton('Open', () {
+                              CanvasButton('Upload', () {
                                 final String str = '[{"id": 1, "name": "lorem ipsum", "address": "dolor set amet"}]';
                                 final jsonobj = json.decode(str);
                                 final jsonstr = json.encode(jsonobj);
                                 print(jsonstr);
                                 print(jsonobj[0]['id']);
                               }),
-                              CanvasButton('Save', () {}),
+                              CanvasButton('Download', downloadTmp),
                               CanvasButton('Print', () {}),
                               CanvasButton('Delete', () {}),
                               CanvasButton('Copy', () {}),

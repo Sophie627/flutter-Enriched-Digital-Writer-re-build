@@ -54,7 +54,7 @@ class _ResizableWidgetState extends State<ResizableWidget> {
               type: widget.type,
               onDrag: (dx, dy) {
                 var newWidth = width + dx;
-                if (newWidth < 220.0 && newWidth > 20.0) {
+                if (newWidth < 500.0 && newWidth > 20.0) {
                   setState(() {
                     width = newWidth > 0 ? newWidth : 0;
                   });
@@ -72,7 +72,7 @@ class _ResizableWidgetState extends State<ResizableWidget> {
               onDrag: (dx, dy) {
                 var newWidth = width -dx ;
 
-                if(newWidth < 220.0 && newWidth> 20.0) {
+                if(newWidth < 500.0 && newWidth> 20.0) {
                   setState(() {
                     width = newWidth > 0 ? newWidth : 0;
                   });
