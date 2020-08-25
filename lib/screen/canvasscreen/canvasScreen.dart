@@ -65,7 +65,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
                     Container(
                       height: 100.0,
 //                      top: 20.0,
-                      child: Row(
+                      child:  MediaQuery.of(context).size.width > 1400
+                      ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -88,6 +89,41 @@ class _CanvasScreenState extends State<CanvasScreen> {
 //                          CanvasButton('Page Color', () {}),
                           ColorPickerButton('Page Color', changeEditorBackgroundColor, _editorBackgroundColor, context),
                           CanvasButton('Help', () {}),
+                        ],
+                      )
+                      : Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CanvasButton('Open', () {
+                                print('Open');
+                              }),
+                              CanvasButton('Save', () {}),
+                              CanvasButton('Print', () {}),
+                              CanvasButton('Delete', () {}),
+                              CanvasButton('Copy', () {}),
+                              CanvasButton('Paste', () {}),
+                              CanvasButton('Undo', () {}),
+                              CanvasButton('Redo', () {}),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CanvasButton('Text Box', () {}),
+                              CanvasButton('Spell', () {}),
+                              CanvasButton('Font Color', () {}),
+                              CanvasButton('Fonts', () {}),
+                              CanvasButton('Zoom', () {}),
+                              CanvasButton('Un Freeze', () {}),
+//                          CanvasButton('Page Color', () {}),
+                              ColorPickerButton('Page Color', changeEditorBackgroundColor, _editorBackgroundColor, context),
+                              CanvasButton('Help', () {}),
+                            ],
+                          ),
                         ],
                       ),
                     ),
