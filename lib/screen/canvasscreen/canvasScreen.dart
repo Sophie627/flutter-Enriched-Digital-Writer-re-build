@@ -1,11 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:enriched_digital_writer/widget/WebBidirectionScrollbar.dart';
 import 'package:enriched_digital_writer/widget/WebDraggableScrollbar.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'dart:convert';
-import 'dart:html' as html;
+//import 'dart:convert';
+//import 'dart:html' as html;
 
 class CanvasScreen extends StatefulWidget {
   CanvasScreen({Key key}) : super(key: key);
@@ -32,26 +33,35 @@ class _CanvasScreenState extends State<CanvasScreen> {
       "backgroundColor": [255, 255, 255, 1.0],
     },
   ];
-
-  void downloadTmp() {
-    final jsonstr = json.encode(_editorState);
-    final bytes = utf8.encode(jsonstr);
-    final blob = html.Blob([bytes]);
-    final url = html.Url.createObjectUrlFromBlob(blob);
-    final anchor =
-    html.document.createElement('a') as html.AnchorElement
-      ..href = url
-      ..style.display = 'none'
-      ..download = 'Template Test.edw';
-    html.document.body.children.add(anchor);
-
-    // download
-    anchor.click();
-
-    // cleanup
-    html.document.body.children.remove(anchor);
-    html.Url.revokeObjectUrl(url);
-  }
+  
+  /*
+    void downloadTmp()
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time: Aug 26 2020 8:20 AM
+    
+    Function downloadTmp
+    Description:  Download Template file(*.edw)
+    
+   */
+//  void downloadTmp() {
+//    final jsonstr = json.encode(_editorState);
+//    final bytes = utf8.encode(jsonstr);
+//    final blob = html.Blob([bytes]);
+//    final url = html.Url.createObjectUrlFromBlob(blob);
+//    final anchor =
+//    html.document.createElement('a') as html.AnchorElement
+//      ..href = url
+//      ..style.display = 'none'
+//      ..download = 'Template Test.edw';
+//    html.document.body.children.add(anchor);
+//
+//    // download
+//    anchor.click();
+//
+//    // cleanup
+//    html.document.body.children.remove(anchor);
+//    html.Url.revokeObjectUrl(url);
+//  }
 
   /*
     Color getListToColor(List colorList)
@@ -116,12 +126,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          CanvasButton('Upload', () {
-                            final String str = '{id:1, name: lorem ipsum, address: dolor set amet}';
-                            final jsonobj = json.decode(str);
-                            print(jsonobj);
-                          }),
-                          CanvasButton('Download', downloadTmp),
+                          CanvasButton('Open', () {}),
+                          CanvasButton('Save', () {}),
                           CanvasButton('Print', () {}),
                           CanvasButton('Delete', () {}),
                           CanvasButton('Copy', () {}),
@@ -144,15 +150,12 @@ class _CanvasScreenState extends State<CanvasScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              CanvasButton('Upload', () {
-                                final String str = '[{"id": 1, "name": "lorem ipsum", "address": "dolor set amet"}]';
-                                final jsonobj = json.decode(str);
-                                final jsonstr = json.encode(jsonobj);
-                                print(jsonstr);
-                                print(jsonobj[0]['id']);
+                              CanvasButton('Open', () {}),
+                              CanvasButton('Save', () {}),
+                              CanvasButton('Print', () {
+                                FirebaseFirestore.instance.collection('templates').add(
+                                    {'data' : _editorState});
                               }),
-                              CanvasButton('Download', downloadTmp),
-                              CanvasButton('Print', () {}),
                               CanvasButton('Delete', () {}),
                               CanvasButton('Copy', () {}),
                               CanvasButton('Paste', () {}),
