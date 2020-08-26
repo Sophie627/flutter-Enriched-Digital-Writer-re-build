@@ -4,43 +4,35 @@ import 'package:flutter/material.dart';
 
 class TextEditor extends StatefulWidget {
   final Color backgroundColor;
+  final List<Widget> children;
 
-  TextEditor({this.backgroundColor = Colors.white});
+  TextEditor({
+    this.backgroundColor = Colors.white,
+    this.children,
+  });
 
   @override
   _TextEditorState createState() => _TextEditorState();
 }
 
 class _TextEditorState extends State<TextEditor> {
-//  html.IFrameElement _element;
-//
-//  @override
-//  void initState() {
-//    super.initState();
-//
-//    _element = html.IFrameElement()
-//      ..contentEditable = 'true'
-//      ..style.border = '1px solid grey'
-//      ..src =
-//          'assets/web_elements/ckeditor5-build-decoupled-document/index.html';
-//
-//    // ignore:undefined_prefixed_name
-//    ui.platformViewRegistry.registerViewFactory(
-//      'text-editor',
-//      (int viewId) => _element,
-//    );
-//  }
+
+  TextEditingController txt = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
 
     return Center(
-        child: Container(
-          color: widget.backgroundColor,
-          height: 2000,
-          width: 2000,
-//          child: HtmlElementView(viewType: 'text-editor'),
+      child: Container(
+        padding: EdgeInsets.all(15.0),
+        color: widget.backgroundColor,
+        height: 2000,
+        width: 2000,
+        child: Stack(
+          fit: StackFit.expand,
+          children: widget.children,
         ),
+      ),
     );
   }
 }

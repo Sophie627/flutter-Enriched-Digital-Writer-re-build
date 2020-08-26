@@ -3,6 +3,7 @@ import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:enriched_digital_writer/widget/WebBidirectionScrollbar.dart';
 import 'package:enriched_digital_writer/widget/WebDraggableScrollbar.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
+import 'package:enriched_digital_writer/widget/texteditor/TextEditorMethods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -21,8 +22,9 @@ class _CanvasScreenState extends State<CanvasScreen> {
   final ScrollController _CanvasVerticalScrollController = ScrollController();
   final ScrollController _TemplateScrollController = ScrollController();
   final ScrollController _FrameScrollController = ScrollController();
+  TextEditingController txt = TextEditingController();
 
-  Color _editorBackgroundColor = Colors.white;
+//  Color _editorBackgroundColor = Colors.white;
   Color _scrollbarBorderColor = Color.fromRGBO(208, 208, 208, 1.0);
   Color _scrollbarColor = Color.fromRGBO(208, 208, 208, 1.0);
   Color _scrollbarBackgroundColor = Color.fromRGBO(232, 232, 232, 1.0);
@@ -31,12 +33,74 @@ class _CanvasScreenState extends State<CanvasScreen> {
   bool _isLoadingTemplate = true;
   List _templateData = [];
   String _templateID = '';
+  List<Widget> _editorWidgets = [];
   List _editorState = [
     {
       "type": "page",
       "backgroundColor": [255, 255, 255, 1.0],
     },
   ];
+
+  void onPressTextBox() {
+    if (_editorState.length == 1) {
+      _editorState.add(
+          {
+            'type': 'body',
+            'data': [
+              {
+                'type': 'text',
+                'data': '',
+              }
+            ],
+          }
+      );
+    }
+    buildEditorContent(_editorState);
+  }
+
+  void onChangedText(String txt) {
+    setState(() {
+      _editorState[1]['data'][0]['data'] = txt;
+    });
+  }
+
+  /*
+    void buildEditorContent (List editorState)
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time:  Aug 26 2020 11:01 PM
+
+    Function: buildEditorContent
+    Description:  Building Editor widgets
+    Parameters: editorState(List) - state related to editor
+   */
+  void buildEditorContent (List editorState) {
+    if (_editorState.length == 2) {
+      setState(() {
+        _editorWidgets = [
+          TextField(
+            onChanged: onChangedText,
+            controller: txt,
+            minLines: 10,
+            maxLines: 15,
+            autocorrect: true,
+            decoration: InputDecoration(
+              hintText: 'Write your status here',
+            ),
+          ),
+        ];
+      });
+
+      if (_editorState[1]['data'] is List) {
+        txt.text = _editorState[1]['data'][0]['data'];
+      } else {
+        txt.text = '';
+      }
+    } else {
+      setState(() {
+        _editorWidgets = [];
+      });
+    }
+  }
 
   Future<void> updateTemplate() {
    FirebaseFirestore.instance.collection('templates')
@@ -102,6 +166,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
               _templateID = element['id'];
               _editorState = element['data']['data'];
             });
+            buildEditorContent(_editorState);
             Navigator.pop(context);
           },
           child: Container(
@@ -179,21 +244,6 @@ class _CanvasScreenState extends State<CanvasScreen> {
 //    html.document.body.children.remove(anchor);
 //    html.Url.revokeObjectUrl(url);
 //  }
-
-  /*
-    Color getListToColor(List colorList)
-    Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time: Aug 25 2020 11:43 PM
-
-    Function getListToColor
-    Description:  Convert List to Color
-    Parameter:  colorList(List) - RGBO List
-
-    return Color
-   */
-  Color getListToColor(List colorList) {
-    return Color.fromRGBO(colorList[0], colorList[1], colorList[2], colorList[3]);
-  }
   
   /*
     void changeEditorBackgroundColor(Color color)
@@ -218,6 +268,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
     super.initState();
 
     fetchTemplateData();
+    buildEditorContent(_editorState);
   }
 
   @override
@@ -260,7 +311,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           CanvasButton('Paste', () {}),
                           CanvasButton('Undo', () {}),
                           CanvasButton('Redo', () {}),
-                          CanvasButton('Text Box', () {}),
+                          CanvasButton('Text Box', onPressTextBox),
                           CanvasButton('Spell', () {}),
                           CanvasButton('Font Color', () {}),
                           CanvasButton('Fonts', () {}),
@@ -293,7 +344,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              CanvasButton('Text Box', () {}),
+                              CanvasButton('Text Box', onPressTextBox),
                               CanvasButton('Spell', () {}),
                               CanvasButton('Font Color', () {}),
                               CanvasButton('Fonts', () {}),
@@ -365,7 +416,10 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           scrollbarHoverColor: _scrollbarHoverColor,
                           horizontalController: _CanvasHorizontalScrollController,
                           verticalController: _CanvasVerticalScrollController,
-                          child: TextEditor(backgroundColor: getListToColor(_editorState[0]['backgroundColor']),),
+                          child: TextEditor(
+                            backgroundColor: getListToColor(_editorState[0]['backgroundColor']),
+                            children: _editorWidgets,
+                          ),
                         ),
                       ),
                     ),
