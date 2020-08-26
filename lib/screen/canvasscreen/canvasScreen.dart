@@ -5,6 +5,7 @@ import 'package:enriched_digital_writer/widget/WebDraggableScrollbar.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 //import 'dart:convert';
 //import 'dart:html' as html;
 
@@ -41,8 +42,44 @@ class _CanvasScreenState extends State<CanvasScreen> {
    FirebaseFirestore.instance.collection('templates')
       .doc(_templateID)
       .update({'data': _editorState})
-      .then((value) => print("Template Updated"))
-      .catchError((error) => print("Failed to update template: $error"));
+      .then((value) =>
+         Alert(
+           context: context,
+           type: AlertType.success,
+           title: "SUCCESS!",
+           desc: "Template Updated.",
+           buttons: [
+             DialogButton(
+               child: Text(
+                 "OK",
+                 style: TextStyle(color: Colors.white, fontSize: 20),
+               ),
+               onPressed: () => Navigator.pop(context),
+               width: 120,
+             )
+           ],
+         )
+         .show()
+      )
+      .catchError((error) =>
+         Alert(
+             context: context,
+             type: AlertType.error,
+             title: "ERROR!",
+             desc: "Failed to update template: $error",
+             buttons: [
+               DialogButton(
+                 child: Text(
+                   "OK",
+                   style: TextStyle(color: Colors.white, fontSize: 20),
+                 ),
+                 onPressed: () => Navigator.pop(context),
+                 width: 120,
+               )
+             ],
+         )
+         .show()
+      );
   }
 
   /*
