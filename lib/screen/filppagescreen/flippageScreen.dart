@@ -2,8 +2,6 @@ import 'dart:ui' as ui;
 import 'dart:html' as html;
 import 'package:enriched_digital_writer/widget/CustomButton.dart';
 import 'package:flutter/material.dart';
-import '../filppagescreen/css.dart';
-import '../filppagescreen/turnjs.dart';
 
 class FlipPageScreen extends StatefulWidget {
   @override

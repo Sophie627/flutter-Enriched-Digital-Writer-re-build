@@ -26,29 +26,92 @@ class _CanvasScreenState extends State<CanvasScreen> {
   Color _scrollbarColor = Color.fromRGBO(208, 208, 208, 1.0);
   Color _scrollbarBackgroundColor = Color.fromRGBO(232, 232, 232, 1.0);
   Color _scrollbarHoverColor = Color.fromRGBO(127, 127, 127, 1.0);
-  
-  final List _editorState = [
+
+  bool _isLoadingTemplate = true;
+  List _templateData = [];
+  String _templateID = '';
+  List _editorState = [
     {
       "type": "page",
       "backgroundColor": [255, 255, 255, 1.0],
     },
   ];
 
+  Future<void> updateTemplate() {
+   FirebaseFirestore.instance.collection('templates')
+      .doc(_templateID)
+      .update({'data': _editorState})
+      .then((value) => print("Template Updated"))
+      .catchError((error) => print("Failed to update template: $error"));
+  }
+
+  /*
+    Future _selectPage() async
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time: Aug 26 2020 3:53 PM
+
+    Future: _selectPage
+
+    Description:  Display dialog for selecting template
+  */
   Future _selectPage() async {
-    switch (await showDialog(
-        context: context,
-        child: SimpleDialog(
-          title: Text('Alert Dialog Title'),
-          children: <Widget>[
-            SimpleDialogOption(child: Text('First Page')),
-            SimpleDialogOption(child: Text('Second Page')),
-          ],
-        ))) {
-      case 1:
-        break;
-      case 2:
-        break;
-    }
+    List<Widget> dialogList = [];
+
+    _templateData.forEach((element) => {
+      dialogList.add(
+        FlatButton(
+          onPressed: () {
+            setState(() {
+              _templateID = element['id'];
+              _editorState = element['data']['data'];
+            });
+            Navigator.pop(context);
+          },
+          child: Container(
+            padding: EdgeInsets.all(20.0),
+            child: Text(element['data']['title'],
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+        )
+      )
+    });
+
+    await showDialog(
+      context: context,
+      child: SimpleDialog(
+        title: Text('Select Template'),
+        children: dialogList,
+      )
+    );
+  }
+
+  /*
+    fetchTemplateData() async
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time: Aug 26 2020 2:58 PM
+
+    Function: fetchTemplateData
+
+    Description:  Using this function, Data related to 'templates' can be gotten from firebase.
+  */
+  fetchTemplateData() async {
+    await FirebaseFirestore.instance.collection('templates').snapshots().listen((data) => {
+      setState(() {
+        _templateData = [];
+        _isLoadingTemplate = true;
+      }),
+      data.docs.forEach((doc) => _templateData.add({
+        'id': doc.id,
+        'data': doc.data(),
+      })),
+      setState(() {
+        _templateData = _templateData;
+        _isLoadingTemplate = false;
+      }),
+    });
   }
 
   /*
@@ -114,9 +177,18 @@ class _CanvasScreenState extends State<CanvasScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    fetchTemplateData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: _isLoadingTemplate
+      ? Center(child: CircularProgressIndicator(),)
+      : Center(
         child: Container(
           color: Theme.of(context).primaryColor,
           child: Column(
@@ -144,7 +216,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           CanvasButton('Open', _selectPage),
-                          CanvasButton('Save', () {}),
+                          CanvasButton('Save', updateTemplate),
                           CanvasButton('Print', () {}),
                           CanvasButton('Delete', () {}),
                           CanvasButton('Copy', () {}),
@@ -168,10 +240,10 @@ class _CanvasScreenState extends State<CanvasScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               CanvasButton('Open', _selectPage),
-                              CanvasButton('Save', () {}),
+                              CanvasButton('Save', updateTemplate),
                               CanvasButton('Print', () {
-//                                FirebaseFirestore.instance.collection('templates').add(
-//                                    {'data' : _editorState});
+                                FirebaseFirestore.instance.collection('templates').add(
+                                    {'data' : _editorState});
                               }),
                               CanvasButton('Delete', () {}),
                               CanvasButton('Copy', () {}),
