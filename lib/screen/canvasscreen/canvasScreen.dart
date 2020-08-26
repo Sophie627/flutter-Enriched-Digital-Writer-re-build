@@ -33,7 +33,24 @@ class _CanvasScreenState extends State<CanvasScreen> {
       "backgroundColor": [255, 255, 255, 1.0],
     },
   ];
-  
+
+  Future _selectPage() async {
+    switch (await showDialog(
+        context: context,
+        child: SimpleDialog(
+          title: Text('Alert Dialog Title'),
+          children: <Widget>[
+            SimpleDialogOption(child: Text('First Page')),
+            SimpleDialogOption(child: Text('Second Page')),
+          ],
+        ))) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+  }
+
   /*
     void downloadTmp()
     Author: Sophie(bolesalavb@gmail.com)
@@ -126,7 +143,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          CanvasButton('Open', () {}),
+                          CanvasButton('Open', _selectPage),
                           CanvasButton('Save', () {}),
                           CanvasButton('Print', () {}),
                           CanvasButton('Delete', () {}),
@@ -150,11 +167,11 @@ class _CanvasScreenState extends State<CanvasScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              CanvasButton('Open', () {}),
+                              CanvasButton('Open', _selectPage),
                               CanvasButton('Save', () {}),
                               CanvasButton('Print', () {
-                                FirebaseFirestore.instance.collection('templates').add(
-                                    {'data' : _editorState});
+//                                FirebaseFirestore.instance.collection('templates').add(
+//                                    {'data' : _editorState});
                               }),
                               CanvasButton('Delete', () {}),
                               CanvasButton('Copy', () {}),

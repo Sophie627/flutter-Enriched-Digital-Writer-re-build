@@ -19,7 +19,7 @@ class _FlipPageScreenState extends State<FlipPageScreen> {
 
     _element = html.IFrameElement()
       ..style.border = 'none'
-      ..src = 'assets/web_elements/flippage/samples/steve-jobs/index.html';
+      ..src = 'assets/web_elements/flippage/samples/magazine/index.html';
 
     // ignore:undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
