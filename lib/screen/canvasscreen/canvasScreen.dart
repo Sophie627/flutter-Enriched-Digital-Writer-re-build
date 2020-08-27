@@ -7,19 +7,22 @@ import 'package:enriched_digital_writer/widget/texteditor/TextEditorMethods.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-//import 'dart:convert';
-//import 'dart:html' as html;
 
 class CanvasScreen extends StatefulWidget {
-  CanvasScreen({Key key}) : super(key: key);
+
+  final String templateID;
+
+  CanvasScreen({Key key,
+    this.templateID = '###',
+  }) : super(key: key);
 
   @override
   _CanvasScreenState createState() => _CanvasScreenState();
 }
 
 class _CanvasScreenState extends State<CanvasScreen> {
-  final ScrollController _CanvasHorizontalScrollController = ScrollController();
-  final ScrollController _CanvasVerticalScrollController = ScrollController();
+  final ScrollController _canvasHorizontalScrollController = ScrollController();
+  final ScrollController _canvasVerticalScrollController = ScrollController();
   final ScrollController _TemplateScrollController = ScrollController();
   final ScrollController _FrameScrollController = ScrollController();
   TextEditingController txt = TextEditingController();
@@ -30,8 +33,6 @@ class _CanvasScreenState extends State<CanvasScreen> {
   Color _scrollbarHoverColor = Color.fromRGBO(127, 127, 127, 1.0);
 
   bool _isLoadingTemplate = true;
-  List _templateData = [];
-  String _templateID = '';
   List<Widget> _editorWidgets = [];
   List _editorState = [
     {
@@ -40,6 +41,35 @@ class _CanvasScreenState extends State<CanvasScreen> {
     },
   ];
 
+  /*
+    fetchTemplateIDData() async
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time: Aug 26 2020 2:58 PM
+
+    Function: fetchTemplateIDtData
+
+    Description:  Using this function, template Data related to id can be gotten from firebase.
+  */
+  fetchTemplateIDData() async {
+    FirebaseFirestore.instance.collection('templates').doc(widget.templateID).snapshots().listen((data) => {
+      setState(() {
+        _editorState = data.data()['data'];
+        _isLoadingTemplate = false;
+      }),
+//      setState(() {
+//        _templateData = [];
+//        _isLoadingTemplate = true;
+//      }),
+//      data.docs.forEach((doc) => _templateData.add({
+//        'id': doc.id,
+//        'data': doc.data(),
+//      })),
+//      setState(() {
+//        _templateData = _templateData;
+//        _isLoadingTemplate = false;
+//      }),
+    });
+  }
   /*
     void onPressTextBox()
     Author: Sophie(bolesalavb@gmail.com)
@@ -112,7 +142,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
 
   Future<void> updateTemplate() {
    FirebaseFirestore.instance.collection('templates')
-      .doc(_templateID)
+      .doc(widget.templateID)
       .update({'data': _editorState})
       .then((value) =>
          Alert(
@@ -155,105 +185,6 @@ class _CanvasScreenState extends State<CanvasScreen> {
   }
 
   /*
-    Future _selectPage() async
-    Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time: Aug 26 2020 3:53 PM
-
-    Future: _selectPage
-
-    Description:  Display dialog for selecting template
-  */
-  Future _selectPage() async {
-    List<Widget> dialogList = [];
-
-    _templateData.forEach((element) => {
-      dialogList.add(
-        FlatButton(
-          onPressed: () {
-            setState(() {
-              _templateID = element['id'];
-              _editorState = element['data']['data'];
-            });
-            buildEditorContent(_editorState);
-            Navigator.pop(context);
-          },
-          child: Container(
-            padding: EdgeInsets.all(20.0),
-            child: Text(element['data']['title'],
-              style: TextStyle(
-                fontSize: 16.0,
-              ),
-            ),
-          ),
-        )
-      )
-    });
-
-    await showDialog(
-      context: context,
-      child: SimpleDialog(
-        title: Text('Select Template'),
-        children: dialogList,
-      )
-    );
-  }
-
-  /*
-    fetchTemplateData() async
-    Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time: Aug 26 2020 2:58 PM
-
-    Function: fetchTemplateData
-
-    Description:  Using this function, Data related to 'templates' can be gotten from firebase.
-  */
-  fetchTemplateData() async {
-    await FirebaseFirestore.instance.collection('templates').snapshots().listen((data) => {
-      setState(() {
-        _templateData = [];
-        _isLoadingTemplate = true;
-      }),
-      data.docs.forEach((doc) => _templateData.add({
-        'id': doc.id,
-        'data': doc.data(),
-      })),
-      setState(() {
-        _templateData = _templateData;
-        _isLoadingTemplate = false;
-      }),
-    });
-  }
-
-  /*
-    void downloadTmp()
-    Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time: Aug 26 2020 8:20 AM
-    
-    Function downloadTmp
-    Description:  Download Template file(*.edw)
-    
-   */
-//  void downloadTmp() {
-//    final jsonstr = json.encode(_editorState);
-//    final bytes = utf8.encode(jsonstr);
-//    final blob = html.Blob([bytes]);
-//    final url = html.Url.createObjectUrlFromBlob(blob);
-//    final anchor =
-//    html.document.createElement('a') as html.AnchorElement
-//      ..href = url
-//      ..style.display = 'none'
-//      ..download = 'Template Test.edw';
-//    html.document.body.children.add(anchor);
-//
-//    // download
-//    anchor.click();
-//
-//    // cleanup
-//    html.document.body.children.remove(anchor);
-//    html.Url.revokeObjectUrl(url);
-//  }
-  
-  /*
     void changeEditorBackgroundColor(Color color)
     Author: Sophie(bolesalavb@gmail.com)
     Created Date & Time:  Aug 23 2020 10:33 PM
@@ -275,12 +206,13 @@ class _CanvasScreenState extends State<CanvasScreen> {
   void initState() {
     super.initState();
 
-    fetchTemplateData();
-    buildEditorContent(_editorState);
+    fetchTemplateIDData();
   }
 
   @override
   Widget build(BuildContext context) {
+    buildEditorContent(_editorState);
+
     return Scaffold(
       body: _isLoadingTemplate
       ? Center(child: CircularProgressIndicator(),)
@@ -311,7 +243,9 @@ class _CanvasScreenState extends State<CanvasScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          CanvasButton('Open', _selectPage),
+                          CanvasButton('Open', () {
+                            Navigator.of(context).pushNamed("/dashboard");
+                          }),
                           CanvasButton('Save', updateTemplate),
                           CanvasButton('Print', () {}),
                           CanvasButton('Delete', () {}),
@@ -335,7 +269,9 @@ class _CanvasScreenState extends State<CanvasScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              CanvasButton('Open', _selectPage),
+                              CanvasButton('Open', () {
+                                Navigator.of(context).pushNamed("/dashboard");
+                              }),
                               CanvasButton('Save', updateTemplate),
                               CanvasButton('Print', () {
                                 FirebaseFirestore.instance.collection('templates').add(
@@ -422,8 +358,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
                           scrollbarBorderColor: _scrollbarBorderColor,
                           scrollbarColor: _scrollbarColor,
                           scrollbarHoverColor: _scrollbarHoverColor,
-                          horizontalController: _CanvasHorizontalScrollController,
-                          verticalController: _CanvasVerticalScrollController,
+                          horizontalController: _canvasHorizontalScrollController,
+                          verticalController: _canvasVerticalScrollController,
                           child: TextEditor(
                             backgroundColor: getListToColor(_editorState[0]['backgroundColor']),
                             children: _editorWidgets,

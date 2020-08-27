@@ -2,7 +2,7 @@ import 'package:enriched_digital_writer/widget/CustomButton.dart';
 import 'package:enriched_digital_writer/widget/HeadingText.dart';
 import 'package:enriched_digital_writer/widget/TemplatePreview.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
 
 class BookBuilderScreen extends StatefulWidget {
   BookBuilderScreen({Key key}) : super(key: key);
@@ -103,11 +103,11 @@ class _BookBuilderScreenState extends State<BookBuilderScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          BookBuilderButton("Save to PDF", () {}),
-                          BookBuilderButton("Create Flip Book", () {
+                          bookBuilderButton("Save to PDF", () {}),
+                          bookBuilderButton("Create Flip Book", () {
                             Navigator.of(context).pushNamed("/flippage");
                           }),
-                          BookBuilderButton("Back to Dashboard", () {
+                          bookBuilderButton("Back to Dashboard", () {
                             Navigator.of(context).pushNamed("/dashboard");
                           }),
                         ],
@@ -124,7 +124,7 @@ class _BookBuilderScreenState extends State<BookBuilderScreen> {
     );
   }
 
-  Widget BookBuilderButton(String txt, Function onPress) {
+  Widget bookBuilderButton(String txt, Function onPress) {
 
     return Row(
       children: [

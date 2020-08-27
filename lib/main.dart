@@ -1,11 +1,9 @@
-import 'package:enriched_digital_writer/screen/bookbuilderScreen.dart';
-import 'package:enriched_digital_writer/screen/canvasscreen/canvasScreen.dart';
-import 'package:enriched_digital_writer/screen/canvasscreen/testCanvasScreen.dart';
-import 'package:enriched_digital_writer/screen/dashboardScreen.dart';
-import 'package:enriched_digital_writer/screen/filppagescreen/flippageScreen.dart';
+import 'package:enriched_digital_writer/routes.dart';
+import 'package:enriched_digital_writer/screen/dashboardscreen/dashboardScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  FluroRouter.setupRouter();
   runApp(MyApp());
 }
 
@@ -19,13 +17,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromRGBO(232, 232, 232, 1.0),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      routes: <String, WidgetBuilder>{
-        '/dashboard': (BuildContext context) => new DashboardScreen(),
-        '/canvas': (BuildContext context) => new CanvasScreen(),
-        '/testcanvas': (BuildContext context) => new TestCanvasScreen(),
-        '/bookbuilder': (BuildContext context) => new BookBuilderScreen(),
-        '/flippage': (BuildContext context) => new FlipPageScreen(),
-      },
+      onGenerateRoute: FluroRouter.router.generator,
       home: DashboardScreen(),
     );
   }

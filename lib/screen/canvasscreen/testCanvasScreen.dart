@@ -1,7 +1,5 @@
 import 'dart:html';
-import 'dart:js';
 
-//import 'package:enriched_digital_writer/widget/.dart';
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TestTextEditor.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
@@ -20,7 +18,7 @@ class _TestCanvasScreenState extends State<TestCanvasScreen> {
   final ScrollController _TemplateScrollController = ScrollController();
   final ScrollController _FrameScrollController = ScrollController();
 
-  final Color _borderColor = Colors.grey;
+//  final Color _borderColor = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
