@@ -129,7 +129,12 @@ class _ManipulatingBallState extends State<ManipulatingBall> {
         color: Color.fromRGBO(232, 232, 232, 1.0),
         height: MediaQuery.of(context).size.height - 56.0,
         child: Center(
-          child: Image.asset("images/" + widget.type + ".png"),
+          child: Container(
+            width: 8.0,
+            child: Image.asset("images/" + widget.type + ".png",
+              fit: BoxFit.fitWidth,
+            ),
+          ),
         ),
       ),
     );

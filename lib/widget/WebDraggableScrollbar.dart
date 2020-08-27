@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class WebDraggableScrollbar extends StatefulWidget {
   final double heightScrollThumb;
@@ -146,6 +147,12 @@ class _WebDraggableScrollbarState extends State<WebDraggableScrollbar> {
 
   @override
   Widget build(BuildContext context) {
+//    SchedulerBinding.instance.addPostFrameCallback((_) {
+//      print('---------------');
+//      print(context.size.height);
+//      print(widget.controller.position.runtimeType);
+//    });
+
     return NotificationListener<ScrollNotification>(
         onNotification: (ScrollNotification notification) {
           changePosition(notification);
@@ -204,18 +211,18 @@ class _BuildScrollThumbState extends State<BuildScrollThumb> {
   bool _isHover = false;
 
   void _onHover(PointerEvent details) {
-//    print('hover');
+    setState(() {
+      _isHover = true;
+    });
   }
 
   void _onEnter(PointerEvent details) {
-//    print('enter');
     setState(() {
       _isHover = true;
     });
   }
 
   void _onExit(PointerEvent details) {
-//    print('exit');
     setState(() {
       _isHover = false;
     });

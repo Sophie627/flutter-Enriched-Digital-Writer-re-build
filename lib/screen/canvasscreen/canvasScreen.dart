@@ -24,7 +24,6 @@ class _CanvasScreenState extends State<CanvasScreen> {
   final ScrollController _FrameScrollController = ScrollController();
   TextEditingController txt = TextEditingController();
 
-//  Color _editorBackgroundColor = Colors.white;
   Color _scrollbarBorderColor = Color.fromRGBO(208, 208, 208, 1.0);
   Color _scrollbarColor = Color.fromRGBO(208, 208, 208, 1.0);
   Color _scrollbarBackgroundColor = Color.fromRGBO(232, 232, 232, 1.0);
@@ -41,6 +40,15 @@ class _CanvasScreenState extends State<CanvasScreen> {
     },
   ];
 
+  /*
+    void onPressTextBox()
+    Author: Sophie(bolesalavb@gmail.com)
+    Created Date & Time:  Aug 27 2020 9:32 AM
+
+    Function onPressTextBox
+    Description:  Function related to Text box button
+
+   */
   void onPressTextBox() {
     if (_editorState.length == 1) {
       _editorState.add(
