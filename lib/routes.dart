@@ -1,5 +1,6 @@
 import 'package:enriched_digital_writer/screen/bookbuilderScreen.dart';
 import 'package:enriched_digital_writer/screen/canvasscreen/canvasScreen.dart';
+import 'package:enriched_digital_writer/screen/canvasscreen/testCanvasScreen.dart';
 import 'package:enriched_digital_writer/screen/dashboardscreen/dashboardScreen.dart';
 import 'package:enriched_digital_writer/screen/filppagescreen/flippageScreen.dart';
 import 'package:fluro/fluro.dart' as fluro;
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 
 class FluroRouter {
   static fluro.Router router = fluro.Router();
+
   static fluro.Handler _templatehandler = fluro.Handler(
       handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
           CanvasScreen(templateID: params['id'][0]));
@@ -19,6 +21,10 @@ class FluroRouter {
   static fluro.Handler _flippagehandler = fluro.Handler(
       handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
           FlipPageScreen());
+  static fluro.Handler _testcanvashandler = fluro.Handler(
+      handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
+          TestCanvasScreen());
+
   static void setupRouter() {
     router.define(
       '/dashboard',
@@ -35,6 +41,10 @@ class FluroRouter {
     router.define(
       '/template/:id',
       handler: _templatehandler,
+    );
+    router.define(
+      '/canvas',
+      handler: _testcanvashandler,
     );
   }
 }

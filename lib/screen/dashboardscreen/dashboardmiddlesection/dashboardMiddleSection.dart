@@ -1,7 +1,8 @@
-import 'package:enriched_digital_writer/screen/dashboardscreen/RecentlyOpenedSection.dart';
-import 'package:enriched_digital_writer/screen/dashboardscreen/completedTemplateLibrary.dart';
 import 'package:enriched_digital_writer/widget/HeadingText.dart';
 import 'package:flutter/material.dart';
+
+import 'RecentlyOpenedSection.dart';
+import 'completedTemplateLibrary.dart';
 
 class DashboardMiddleSection extends StatefulWidget {
 

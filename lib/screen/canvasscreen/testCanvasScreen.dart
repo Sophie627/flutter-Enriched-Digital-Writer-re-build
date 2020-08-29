@@ -1,8 +1,9 @@
 import 'dart:html';
+import 'dart:js' as js;
 
+import 'package:enriched_digital_writer/screen/canvasscreen/canvastopsection/canvasTopSection.dart';
 import 'package:enriched_digital_writer/widget/ResizableWidget.dart';
 import 'package:enriched_digital_writer/widget/texteditor/TestTextEditor.dart';
-import 'package:enriched_digital_writer/widget/texteditor/TextEditor.dart';
 import 'package:flutter/material.dart';
 
 class TestCanvasScreen extends StatefulWidget {
@@ -13,12 +14,14 @@ class TestCanvasScreen extends StatefulWidget {
 }
 
 class _TestCanvasScreenState extends State<TestCanvasScreen> {
-//  final ScrollController _CanvasHorizontalScrollController = ScrollController();
   final ScrollController _CanvasVerticalScrollController = ScrollController();
   final ScrollController _TemplateScrollController = ScrollController();
   final ScrollController _FrameScrollController = ScrollController();
 
-//  final Color _borderColor = Colors.grey;
+  js.JsObject _connector;
+
+  // set setConnector(js.JsObject value) => setState(() => _connector = value);
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,51 +31,7 @@ class _TestCanvasScreenState extends State<TestCanvasScreen> {
           color: Theme.of(context).primaryColor,
           child: Column(
             children: [
-              Container(
-                height: 100.0,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 20.0,
-                      left: 30.0,
-                      child: Container(
-                        height: 60.0,
-                        child: Image.asset('images/logo.png',
-                          fit: BoxFit.fitHeight,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 100.0,
-//                      top: 20.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CanvasButton('Open', () {
-                            print('Open');
-                          }),
-                          CanvasButton('Save', () {}),
-                          CanvasButton('Print', () {}),
-                          CanvasButton('Delete', () {}),
-                          CanvasButton('Copy', () {}),
-                          CanvasButton('Paste', () {}),
-                          CanvasButton('Undo', () {}),
-                          CanvasButton('Redo', () {}),
-                          CanvasButton('Text Box', () {}),
-                          CanvasButton('Spell', () {}),
-                          CanvasButton('Font Color', () {}),
-                          CanvasButton('Fonts', () {}),
-                          CanvasButton('Zoom', () {}),
-                          CanvasButton('Un Freeze', () {}),
-                          CanvasButton('Page Color', () {}),
-                          CanvasButton('Help', () {}),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              CanvasTopSection(connect: _connector,),
               Expanded(
                 child: Row(
                   children: [
@@ -126,7 +85,7 @@ class _TestCanvasScreenState extends State<TestCanvasScreen> {
                                 margin: EdgeInsets.fromLTRB(76.0, 0.0, 76.0, 0.0),
                                 height: MediaQuery.of(context).size.height - 56.0,
                                 width: 600.0,
-                                child: TestTextEditor(),
+                                child: TestTextEditor(callback: (val) => setState(() => _connector = val),),
                               ),
                             ),
                           ],
@@ -234,43 +193,6 @@ class _TestCanvasScreenState extends State<TestCanvasScreen> {
           SizedBox(height: 20.0,),
         ],
       ),
-    );
-  }
-
-  /*
-    Widget CanvasButton(String txt)
-    Author: Sophie(bolesalavb@gmail.com)
-    Created Date & Time:  Aug 17 2020 7:20 AM
-
-    Widget: CanvasButton
-    Parameters: txt(String) - Text in button
-                func(Function)  - On press function
-    Return: OutlineButton
-   */
-  Widget CanvasButton(String txt, Function func) {
-    return Row(
-      children: [
-        SizedBox(width: 5.0,),
-        ButtonTheme(
-          minWidth: 66.0,
-          child: OutlineButton(
-            borderSide: BorderSide(
-              color: Colors.grey,
-              width: 5.0,
-            ),
-            color: Colors.grey[300],
-            textColor: Colors.black,
-            hoverColor: Colors.white,
-            disabledTextColor: Colors.black,
-            padding: EdgeInsets.all(8.0),
-            splashColor: Colors.grey,
-            onPressed: func,
-            child: Text(txt,
-              style: TextStyle(fontSize: 16.0),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

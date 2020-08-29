@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enriched_digital_writer/screen/dashboardscreen/dashboardBottomSection.dart';
-import 'package:enriched_digital_writer/screen/dashboardscreen/dashboardMiddleSection.dart';
 import 'package:flutter/material.dart';
 import 'dashboardTopSection.dart';
+import 'dashboardmiddlesection/dashboardMiddleSection.dart';
 
 class DashboardScreen extends StatefulWidget {
   DashboardScreen({Key key}) : super(key: key);
