@@ -47,14 +47,12 @@ class _TestTextEditorState extends State<TestTextEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return  Center(
         child: Container(
           height: double.infinity,
           width: double.infinity,
           child: HtmlElementView(viewType: 'text-editor'),
         ),
-      ),
     );
   }
 }

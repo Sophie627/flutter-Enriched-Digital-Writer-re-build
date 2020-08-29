@@ -12,11 +12,15 @@ class SecondButtonGroup extends StatelessWidget {
   }) : super(key: key);
 
   void changeBackgroundColor (Color color) {
-    connect.callMethod('changeBackgroundColor', ['#${color.value.toRadixString(16)}']);
+    String colorString = color.toString(); // Color(0x12345678)
+    String valueString = colorString.split('(0xff')[1].split(')')[0]; 
+    connect.callMethod('changeBackgroundColor', ['#' + valueString]);
   }
 
   void changeFontColor (Color color) {
-    connect.callMethod('changeFontColor', ['#${color.value.toRadixString(16)}']);
+    String colorString = color.toString(); // Color(0x12345678)
+    String valueString = colorString.split('(0xff')[1].split(')')[0]; 
+    connect.callMethod('changeFontColor', ['#' + valueString]);
   }
 
   @override
@@ -40,23 +44,7 @@ class SecondButtonGroup extends StatelessWidget {
         CanvasButton(
           txt: 'Fonts', 
           onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return new SimpleDialog(
-                  children: <Widget>[
-                    new FittedBox(
-                      child: new ListView(
-                        children: <Widget>[
-                          new Text("one"),
-                          new Text("two"),
-                        ],
-                      ),
-                    )
-                  ],
-                );
-              },
-            );
+            connect.callMethod('changeFontName', ['mv boli']);
           }),
         CanvasButton(
           txt: 'Zoom', 

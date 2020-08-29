@@ -9,13 +9,13 @@ final String divBeforeEditor = """
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         main #editor {
-            box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
-            border: 1px solid #DFE4E6;
             width: 100%;
             min-height: 21cm;
-            padding: 1cm 1cm 2cm;
             margin: 0 auto;
-            box-shadow: 2px 2px 1px rgba(0, 0, 0, .05);
+            padding: 25px 20px;
+        }
+        main #editor:focus {
+          outline: 0 !important;
         }
     </style>
 </head>
@@ -45,6 +45,7 @@ final String divAfterEditor = """
   parent.connect_content_to_flutter && parent.connect_content_to_flutter(window)
   function deleteText() {
     document.execCommand('delete');
+    // document.body.style.zoom = "80%";
   }
 
   // Copy
@@ -71,10 +72,16 @@ final String divAfterEditor = """
     document.execCommand('redo');
   }
 
-  // Redo
+  // ForeColor
   parent.connect_content_to_flutter && parent.connect_content_to_flutter(window)
   function changeFontColor(color) {
     document.execCommand('foreColor', false, color);
+  }
+
+  // ForeName
+  parent.connect_content_to_flutter && parent.connect_content_to_flutter(window)
+  function changeFontName(fontFamily) {
+    document.execCommand('fontName', false, fontFamily);
   }
 
 </script>
